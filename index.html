@@ -1,0 +1,645 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex,nofollow">
+<title>Fountain Park Portal</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<script src="https://unpkg.com/lucide@0.460.0/dist/umd/lucide.min.js"></script>
+<style>
+body::before{content:'';position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:30;background:var(--bg)}
+:root{
+  --ink:#0f2e2c;--ink2:#3f5c59;--mute:#7b8e8b;--bg:#f3f0e8;--card:#ffffff;--line:#e4ddcf;--line2:#efe9dd;
+  --teal:#0e625d;--teal2:#16847c;--tealbg:#e2f0ed;--sand:#c2832f;--sandbg:#fbf0df;
+  --red:#b0412d;--redbg:#f8e3de;--green:#2b7a47;--greenbg:#e1f1e6;--amber:#9b6409;--amberbg:#fbeed3;--blue:#2b5b8c;--bluebg:#e1ebf5;
+  --r:16px;--sh:0 1px 2px rgba(15,46,44,.05),0 6px 20px rgba(15,46,44,.06);
+  --topbg:rgba(243,240,232,.92);--raise:#ffffff;--soft:#faf8f3;--track:#eee8dc;--chip:#e9e4d8;--hover:#ebe6da;--field:#fdfcf9;--notefg:#6d4a17;--notetealfg:#0b4c48;--onink:#ffffff;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--ink:#e5eeeb;--ink2:#a9bcb8;--mute:#80948f;--bg:#0e1716;--card:#16221f;--line:#2b3a37;--line2:#21302c;--teal:#1d8f85;--teal2:#25a397;--tealbg:#143430;--sand:#d4974a;--sandbg:#382a16;--red:#e5826d;--redbg:#3b1f19;--green:#6cc28a;--greenbg:#173020;--amber:#e0b25a;--amberbg:#372a10;--blue:#82b2e2;--bluebg:#18293b;--topbg:rgba(14,23,22,.9);--raise:#1d2a27;--soft:#1b2725;--track:#26342f;--chip:#1d2a27;--hover:#1f2d2a;--field:#1a2623;--notefg:#e9c48a;--notetealfg:#9fd8d1;--onink:#0e1716;color-scheme:dark}}
+:root[data-theme="dark"]{--ink:#e5eeeb;--ink2:#a9bcb8;--mute:#80948f;--bg:#0e1716;--card:#16221f;--line:#2b3a37;--line2:#21302c;--teal:#1d8f85;--teal2:#25a397;--tealbg:#143430;--sand:#d4974a;--sandbg:#382a16;--red:#e5826d;--redbg:#3b1f19;--green:#6cc28a;--greenbg:#173020;--amber:#e0b25a;--amberbg:#372a10;--blue:#82b2e2;--bluebg:#18293b;--topbg:rgba(14,23,22,.9);--raise:#1d2a27;--soft:#1b2725;--track:#26342f;--chip:#1d2a27;--hover:#1f2d2a;--field:#1a2623;--notefg:#e9c48a;--notetealfg:#9fd8d1;--onink:#0e1716;color-scheme:dark}
+*{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%}
+html,body{overflow-x:hidden}
+body{font-family:'Plus Jakarta Sans',system-ui,sans-serif;background:var(--bg);color:var(--ink);font-size:15px;line-height:1.5}
+button,input,select,textarea{font:inherit;color:inherit}
+button{cursor:pointer;border:0;background:none}
+svg.lucide{width:18px;height:18px;stroke-width:2;flex-shrink:0}
+/* header */
+.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--topbg);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.topin{max-width:1320px;margin:0 auto;padding-block:12px;padding-left:max(20px,env(safe-area-inset-left,0px));padding-right:max(20px,env(safe-area-inset-right,0px));display:flex;align-items:center;gap:16px}
+.brand{display:flex;align-items:center;gap:10px;font-weight:800;letter-spacing:-.01em;white-space:nowrap}
+.logo{width:36px;height:36px;border-radius:11px;background:linear-gradient(140deg,var(--teal2),var(--teal));display:grid;place-items:center;color:#fff}
+.brand small{display:block;font-weight:500;color:var(--mute);font-size:12px;letter-spacing:0}
+.roles{display:flex;gap:4px;background:var(--chip);padding:4px;border-radius:12px;margin-left:auto}
+.roles button{padding:7px 14px;border-radius:9px;font-weight:600;font-size:13.5px;color:var(--ink2);display:flex;gap:6px;align-items:center;white-space:nowrap}
+.roles button.on{background:var(--raise);color:var(--teal);box-shadow:0 1px 3px rgba(0,0,0,.08)}
+.lang{display:flex;border:1px solid var(--line);border-radius:10px;overflow:hidden;background:var(--card)}
+.lang button{padding:7px 11px;font-weight:700;font-size:12.5px;color:var(--mute)}
+.lang button.on{background:var(--ink);color:var(--onink)}
+.mock{background:#0f2e2c;color:#d8e7e4;font-size:12.5px;text-align:center;padding:6px 12px}
+.mock b{color:#fff}
+/* layout */
+.shell{max-width:1320px;margin:0 auto;display:grid;grid-template-columns:236px 1fr;gap:24px;padding-block:24px 60px;padding-left:max(20px,env(safe-area-inset-left,0px));padding-right:max(20px,env(safe-area-inset-right,0px))}
+.shell>*{min-width:0}
+.solo{max-width:1120px;margin:0 auto;padding-block:28px 70px;padding-left:max(20px,env(safe-area-inset-left,0px));padding-right:max(20px,env(safe-area-inset-right,0px))}
+aside{position:sticky;top:86px;align-self:start}
+.who{background:var(--card);border-radius:var(--r);padding:14px;box-shadow:var(--sh);margin-bottom:12px;display:flex;gap:10px;align-items:center}
+.av{width:38px;height:38px;border-radius:50%;background:var(--sandbg);color:var(--sand);display:grid;place-items:center;font-weight:800;font-size:14px;flex-shrink:0}
+.who b{display:block;font-size:14px;line-height:1.25}.who span{font-size:12px;color:var(--mute)}
+nav{display:flex;flex-direction:column;gap:2px}
+nav button{display:flex;align-items:center;gap:10px;padding:9px 12px;border-radius:10px;font-weight:600;font-size:14px;color:var(--ink2);text-align:left;width:100%}
+nav button:hover{background:var(--hover)}
+nav button.on{background:var(--teal);color:#fff}
+nav .badge{margin-left:auto;background:var(--red);color:#fff;font-size:11px;padding:1px 7px;border-radius:20px}
+nav button.on .badge{background:#fff;color:var(--teal)}
+/* type */
+h1{font-size:28px;letter-spacing:-.02em;line-height:1.2;font-weight:800}
+h2{font-size:21px;letter-spacing:-.015em;font-weight:800;margin-bottom:4px}
+h3{font-size:15.5px;font-weight:700;margin-bottom:10px;display:flex;align-items:center;gap:8px}
+.sub{color:var(--ink2);margin-bottom:20px}
+.mute{color:var(--mute)}.sm{font-size:13px}.xs{font-size:12px}
+.ph{display:flex;align-items:flex-end;justify-content:space-between;gap:16px;margin-bottom:18px;flex-wrap:wrap}
+.ph .sub{margin-bottom:0}
+/* cards */
+.card{background:var(--card);border-radius:var(--r);padding:18px;box-shadow:var(--sh)}
+.grid{display:grid;gap:16px}
+.grid>*{min-width:0}
+.g2{grid-template-columns:repeat(2,1fr)}.g3{grid-template-columns:repeat(3,1fr)}.g4{grid-template-columns:repeat(4,1fr)}
+.span2{grid-column:span 2}
+.stack>*+*{margin-top:16px}
+.row{display:flex;align-items:center;gap:10px}
+.between{justify-content:space-between}
+.wrap{flex-wrap:wrap}
+.pill{display:inline-flex;align-items:center;gap:5px;font-size:12px;font-weight:700;padding:3px 9px;border-radius:20px;white-space:nowrap}
+.p-green{background:var(--greenbg);color:var(--green)}.p-red{background:var(--redbg);color:var(--red)}.p-amber{background:var(--amberbg);color:var(--amber)}.p-blue{background:var(--bluebg);color:var(--blue)}.p-teal{background:var(--tealbg);color:var(--teal)}.p-grey{background:var(--track);color:var(--ink2)}
+.btn{display:inline-flex;align-items:center;gap:7px;padding:10px 16px;border-radius:11px;font-weight:700;font-size:14px;background:var(--teal);color:#fff;white-space:nowrap}
+.btn:hover{background:var(--teal2)}
+.btn.ghost{background:var(--card);color:var(--teal);border:1px solid var(--line)}
+.btn.ghost:hover{background:var(--tealbg)}
+.btn.sand{background:var(--sand)}
+.btn.sm{padding:7px 12px;font-size:13px}
+.kpi .v{font-size:26px;font-weight:800;letter-spacing:-.02em;margin-top:4px}
+.kpi .l{font-size:13px;color:var(--ink2);font-weight:600;display:flex;gap:6px;align-items:center}
+.kpi .d{font-size:12.5px;margin-top:2px}
+.up{color:var(--green)}.down{color:var(--red)}
+.list>div{display:flex;gap:12px;align-items:flex-start;padding:12px 0;border-top:1px solid var(--line2)}
+.list>div:first-child{border-top:0;padding-top:2px}
+.ico{width:36px;height:36px;border-radius:10px;display:grid;place-items:center;flex-shrink:0}
+.i-teal{background:var(--tealbg);color:var(--teal)}.i-sand{background:var(--sandbg);color:var(--sand)}.i-red{background:var(--redbg);color:var(--red)}.i-blue{background:var(--bluebg);color:var(--blue)}.i-green{background:var(--greenbg);color:var(--green)}.i-amber{background:var(--amberbg);color:var(--amber)}
+.grow{flex:1;min-width:0}
+.list b{font-size:14px;display:block;line-height:1.35}
+table{width:100%;border-collapse:collapse;font-size:13.5px}
+th{text-align:left;font-size:11.5px;text-transform:uppercase;letter-spacing:.05em;color:var(--mute);font-weight:700;padding:8px 10px;border-bottom:1px solid var(--line)}
+td{padding:10px;border-bottom:1px solid var(--line2);vertical-align:middle}
+tr:last-child td{border-bottom:0}
+.tw{overflow-x:auto;margin:0 -4px}
+.num{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+.bar{height:8px;background:var(--track);border-radius:8px;overflow:hidden}
+.bar i{display:block;height:100%;background:var(--teal);border-radius:8px}
+.field{display:flex;flex-direction:column;gap:5px;margin-bottom:12px}
+.field label{font-size:13px;font-weight:700;color:var(--ink2)}
+.field input,.field select,.field textarea{border:1px solid var(--line);border-radius:10px;padding:10px 12px;background:var(--field);width:100%}
+.field textarea{min-height:84px;resize:vertical}
+.drop{border:1.5px dashed var(--line);border-radius:12px;padding:14px;text-align:center;color:var(--mute);font-size:13px;display:flex;gap:8px;align-items:center;justify-content:center}
+.note{background:var(--sandbg);border-radius:12px;padding:12px 14px;font-size:13.5px;color:var(--notefg);display:flex;gap:10px}
+.note.teal{background:var(--tealbg);color:var(--notetealfg)}
+.note svg{margin-top:2px}
+/* hero */
+.hero{border-radius:24px;padding:40px;color:#fff;background:radial-gradient(1200px 400px at 90% -10%,#1d9a90 0%,transparent 60%),linear-gradient(135deg,#0c5551,#0f2e2c);position:relative;overflow:hidden}
+.hero h1{font-size:36px;max-width:640px}
+.hero p{max-width:600px;color:#cfe5e1;margin-top:12px;font-size:16px}
+.hero .row{margin-top:22px}
+.hero .btn{background:#fff;color:var(--teal)}
+.hero .btn.ghost{background:transparent;color:#fff;border-color:rgba(255,255,255,.35)}
+.ripple{position:absolute;right:-60px;bottom:-90px;width:340px;height:340px;border-radius:50%;border:2px solid rgba(255,255,255,.1);box-shadow:0 0 0 40px rgba(255,255,255,.04),0 0 0 80px rgba(255,255,255,.03)}
+.eyebrow{font-size:12px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--sand);margin-bottom:8px}
+.hero .eyebrow{color:#f0c27e}
+/* quick actions */
+.qa{display:grid;grid-template-columns:repeat(6,1fr);gap:10px}
+.qa button{background:var(--card);border-radius:14px;padding:14px 8px;box-shadow:var(--sh);display:flex;flex-direction:column;align-items:center;gap:8px;font-weight:700;font-size:12.5px;text-align:center}
+.qa button:hover{transform:translateY(-1px)}
+/* steps */
+.steps{display:flex;gap:4px;margin-top:10px}
+.steps span{flex:1;height:5px;border-radius:5px;background:var(--track)}
+.steps span.on{background:var(--teal)}
+/* slots */
+.days{display:flex;gap:8px;overflow-x:auto;padding-bottom:4px}
+.days button{min-width:58px;border:1px solid var(--line);border-radius:12px;padding:8px 6px;background:var(--card);font-size:12px;font-weight:600;color:var(--ink2)}
+.days button b{display:block;font-size:17px;color:var(--ink)}
+.days button.on{background:var(--teal);border-color:var(--teal);color:#cfe9e5}
+.days button.on b{color:#fff}
+.slots{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:14px}
+.slots button{border:1px solid var(--line);border-radius:10px;padding:9px 4px;font-size:13px;font-weight:700;background:var(--card)}
+.slots button.taken{background:var(--track);color:var(--mute);text-decoration:line-through;cursor:not-allowed}
+.slots button.sel{background:var(--sand);border-color:var(--sand);color:#fff}
+.fac{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:16px}
+.fac button{background:var(--card);border:1.5px solid var(--line);border-radius:14px;padding:12px;text-align:left;font-weight:700;font-size:13.5px}
+.fac button span{display:block;font-weight:500;font-size:12px;color:var(--mute)}
+.fac button.on{border-color:var(--teal);background:var(--tealbg)}
+/* kanban */
+.kan{display:grid;grid-template-columns:repeat(4,minmax(220px,1fr));gap:12px;overflow-x:auto;padding-bottom:6px}
+.col{background:var(--hover);border-radius:14px;padding:10px}
+.col h4{font-size:13px;font-weight:800;padding:4px 6px 10px;display:flex;justify-content:space-between}
+.tk{background:var(--card);border-radius:11px;padding:11px;margin-bottom:8px;box-shadow:0 1px 2px rgba(0,0,0,.05);font-size:13px}
+.tk b{display:block;font-size:13.5px;margin:3px 0 6px;line-height:1.35}
+/* gauge */
+.gauge{position:relative;height:18px;background:var(--track);border-radius:10px;overflow:hidden}
+.gauge i{position:absolute;left:0;top:0;bottom:0;border-radius:10px}
+.gauge .line{position:absolute;top:-4px;bottom:-4px;width:2px;background:var(--ink)}
+/* chart */
+.chart{display:flex;align-items:flex-end;gap:6px;height:150px;padding-top:10px;overflow:hidden}
+.chart>div{min-width:0}
+.chart div{flex:1;display:flex;flex-direction:column;align-items:center;gap:6px;height:100%;justify-content:flex-end}
+.chart i{width:100%;max-width:30px;border-radius:7px 7px 3px 3px;background:var(--teal)}
+.chart i.b{background:var(--sand)}
+.chart span{font-size:11px;color:var(--mute);font-weight:600}
+.dual{display:flex;gap:3px;align-items:flex-end;width:100%;justify-content:center;height:100%}
+.dual i{max-width:13px}
+.legend{display:flex;gap:14px;font-size:12px;color:var(--ink2);font-weight:600}
+.legend i{display:inline-block;width:10px;height:10px;border-radius:3px;margin-right:5px;vertical-align:-1px}
+/* toggles */
+.tg{width:38px;height:22px;border-radius:20px;background:var(--teal);position:relative;flex-shrink:0}
+.tg::after{content:'';position:absolute;right:3px;top:3px;width:16px;height:16px;border-radius:50%;background:#fff}
+.tg.off{background:var(--line)}.tg.off::after{right:auto;left:3px}
+/* proposal */
+.tier{border-radius:18px;padding:22px;color:#fff;position:relative}
+.tier h3{font-size:18px;margin-bottom:4px}
+.tier ul{list-style:none;margin-top:12px;font-size:14px}
+.tier li{padding:5px 0;display:flex;gap:8px;align-items:flex-start;border-top:1px solid rgba(255,255,255,.12)}
+.tier li svg{width:15px;height:15px;margin-top:3px;opacity:.8}
+.tier .who2{font-size:13px;opacity:.85}
+.t1{background:linear-gradient(150deg,#c2832f,#9c6420)}
+.t2{background:linear-gradient(150deg,#16847c,#0e625d)}
+.t3{background:linear-gradient(150deg,#24453f,#0f2e2c)}
+.phase{display:grid;grid-template-columns:120px 1fr;gap:16px;padding:16px 0;border-top:1px solid var(--line2)}
+.phase:first-child{border-top:0}
+.phase .n{font-weight:800;color:var(--teal)}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:6px}
+.chips span{background:var(--tealbg);color:var(--teal);font-size:12.5px;font-weight:700;padding:4px 10px;border-radius:20px}
+.cta{display:flex;gap:10px;flex-wrap:wrap;margin-top:6px}
+.toast{position:fixed;left:50%;bottom:calc(24px + env(safe-area-inset-bottom,0px));transform:translateX(-50%) translateY(20px);background:var(--ink);color:#fff;padding:12px 18px;border-radius:12px;font-weight:600;font-size:14px;opacity:0;transition:.25s;z-index:50;display:flex;gap:8px;align-items:center;max-width:90vw}
+.toast.show{opacity:1;transform:translateX(-50%)}
+.foot{text-align:center;color:var(--mute);font-size:12.5px;padding-block:10px 40px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.status{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.status div{display:flex;gap:10px;align-items:center;background:var(--soft);border-radius:12px;padding:10px 12px;font-size:13.5px;font-weight:600}
+.dot{width:9px;height:9px;border-radius:50%;flex-shrink:0}
+.qr{width:120px;height:120px;border-radius:12px;flex-shrink:0;background:
+ conic-gradient(from 90deg at 30% 30%,#0f2e2c 25%,transparent 0) 0 0/24px 24px,
+ repeating-linear-gradient(90deg,#0f2e2c 0 6px,transparent 6px 12px),#fff;border:8px solid #fff;outline:1px solid var(--line);opacity:.9}
+@media (max-width:1060px){.g4{grid-template-columns:repeat(2,1fr)}.qa{grid-template-columns:repeat(3,1fr)}.fac{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:860px){
+  .shell{grid-template-columns:1fr;padding-top:12px}
+  aside{position:static}
+  .who{display:none}
+  nav{flex-direction:row;overflow-x:auto;gap:6px;padding-bottom:4px;scrollbar-width:none}
+  nav button{width:auto;white-space:nowrap;background:var(--card);box-shadow:var(--sh)}
+  .g2,.g3{grid-template-columns:1fr}.span2{grid-column:auto}
+  .status{grid-template-columns:1fr 1fr}
+}
+@media (max-width:640px){
+  .topin{flex-wrap:wrap;padding-block:10px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));gap:10px}
+  .brand small{display:none}
+  .roles{order:3;width:100%;margin-left:0;overflow-x:auto;scrollbar-width:none}
+  .roles button{padding:7px 6px;flex:1;justify-content:center;font-size:13px}
+  .roles button svg{display:none}
+  .lang{margin-left:auto}
+  .solo,.shell{padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+  .hero{padding:26px 22px}.hero h1{font-size:27px}
+  h1{font-size:24px}
+  .g4{grid-template-columns:1fr 1fr}
+  .kpi .v{font-size:19px;overflow-wrap:anywhere}
+  .phase{grid-template-columns:1fr;gap:4px}
+  .slots{grid-template-columns:repeat(3,1fr)}
+  .status{grid-template-columns:1fr}
+  .card{padding:15px}
+}
+</style>
+</head>
+<body>
+<div id="top"></div>
+<div id="app"></div>
+<div class="foot" id="foot"></div>
+<div class="toast" id="toast"></div>
+<script>
+let LANG='id', ROLE='proposal';
+const VIEW={proposal:'overview',public:'home',resident:'home',board:'dash'};
+const t=(id,en)=>LANG==='id'?id:en;
+const T=a=>Array.isArray(a)?t(a[0],a[1]):a;
+const rp=n=>'Rp'+Math.round(n).toLocaleString('id-ID');
+const ic=(n,c='')=>`<i data-lucide="${n}" class="${c}"></i>`;
+const pill=(cls,txt)=>`<span class="pill p-${cls}">${txt}</span>`;
+
+/* ---------- state (sample data only) ---------- */
+let tickets=[
+ {id:'FP-1042',cat:['Kebocoran','Leak'],title:['Rembesan air di plafon kamar mandi','Water seeping through bathroom ceiling'],step:2,date:'21 Nov',who:['Teknisi — Pak Hendra','Technician — Pak Hendra'],sla:['Target 48 jam · sisa 19 jam','48-hour target · 19 h left']},
+ {id:'FP-1037',cat:['Lift','Lift'],title:['Tombol panggil lift B lantai 5 tidak menyala','Lift B call button on floor 5 not lit'],step:3,date:'18 Nov',who:['Vendor lift','Lift contractor'],sla:['Selesai dalam 31 jam','Closed in 31 h']},
+ {id:'FP-1029',cat:['Kebersihan','Cleaning'],title:['Sampah menumpuk di area tangga darurat lt. 5','Rubbish piling up in fire stairs, floor 5'],step:3,date:'12 Nov',who:['Housekeeping','Housekeeping'],sla:['Selesai dalam 6 jam','Closed in 6 h']}
+];
+let poll=[{l:['Perbaikan kolam renang','Swimming pool repair'],v:31},{l:['Resurfacing jalan masuk & parkir','Driveway & car park resurfacing'],v:24},{l:['Lapangan tenis','Tennis court'],v:12},{l:['Tambah pengisian mobil listrik','More EV chargers'],v:19}];
+let voted=false, fac=0, day=2, slot=null;
+
+/* ---------- navigation ---------- */
+const NAV={
+ resident:[['home','house','Beranda','Home'],['bills','receipt','Tagihan & Bayar','Bills & payments',1],['req','wrench','Laporan & Permintaan','Requests & complaints'],['book','calendar-days','Booking Fasilitas','Facility booking'],['access','key-round','Izin & Akses','Permits & access'],['docs','folder-open','Dokumen','Documents'],['meet','vote','Rapat & Voting','Meetings & voting',1],['trans','chart-pie','Transparansi','Transparency'],['prof','user-round','Profil & Unit','Profile & unit']],
+ board:[['dash','layout-dashboard','Dasbor','Dashboard'],['reg','book-user','Register Pemilik','Owner register'],['arr','hand-coins','Tunggakan & Penagihan','Arrears & collection'],['wo','clipboard-list','Work Order','Work orders',3],['comp','calendar-check','Kalender Kepatuhan','Compliance calendar',2],['mtg','users-round','Rapat & Kuorum','Meetings & quorum'],['fin','landmark','Keuangan','Finance'],['proj','hammer','Proyek & Aset','Projects & assets'],['vend','file-signature','Kontrak & Vendor','Contracts & vendors'],['kpi','gauge','Kinerja Pengelola','Management KPIs'],['comms','megaphone','Siaran','Broadcasts'],['log','scroll-text','Log Keputusan','Decision log']]
+};
+const ROLES=[['proposal','lightbulb','Usulan','Proposal'],['public','globe','Publik','Public'],['resident','house','Penghuni','Residents'],['board','shield-check','Pengurus','Board']];
+
+function go(r,v){ROLE=r;if(v)VIEW[r]=v;render();window.scrollTo({top:0,behavior:'smooth'});}
+function setLang(l){LANG=l;render();}
+function toast(m){const e=document.getElementById('toast');e.innerHTML=ic('check-circle-2')+m;window.lucide&&lucide.createIcons();e.classList.add('show');clearTimeout(e._t);e._t=setTimeout(()=>e.classList.remove('show'),2600);}
+
+function header(){
+ return `<div class="top"><div class="topin">
+ <div class="brand"><div class="logo">${ic('droplets')}</div><div>Fountain Park<small>Griya Pancoran · PPPSRS</small></div></div>
+ <div class="roles">${ROLES.map(r=>`<button class="${ROLE===r[0]?'on':''}" onclick="go('${r[0]}')">${ic(r[1])}${t(r[2],r[3])}</button>`).join('')}</div>
+ <div class="lang"><button class="${LANG==='id'?'on':''}" onclick="setLang('id')">ID</button><button class="${LANG==='en'?'on':''}" onclick="setLang('en')">EN</button></div>
+ </div><div class="mock"><b>${t('MOCK-UP','MOCK-UP')}</b> — ${t('semua nama, angka dan data di halaman ini adalah contoh, bukan data nyata Fountain Park.','all names, figures and data on these pages are samples, not real Fountain Park data.')}</div></div>`;
+}
+function side(){
+ const w=ROLE==='resident'?['SW','Ibu Sari W.',t('Unit 5C · Pemilik','Unit 5C · Owner')]:['DA','Pak Dimas A.',t('Sekretaris PPPSRS','PPPSRS Secretary')];
+ return `<aside><div class="who"><div class="av">${w[0]}</div><div><b>${w[1]}</b><span>${w[2]}</span></div></div>
+ <nav>${NAV[ROLE].map(n=>`<button class="${VIEW[ROLE]===n[0]?'on':''}" onclick="go('${ROLE}','${n[0]}')">${ic(n[1])}${t(n[2],n[3])}${n[4]?`<span class="badge">${n[4]}</span>`:''}</button>`).join('')}</nav></aside>`;
+}
+function render(){
+ document.documentElement.lang=LANG;
+ document.getElementById('top').innerHTML=header();
+ const body=V[ROLE][VIEW[ROLE]]();
+ document.getElementById('app').innerHTML=(ROLE==='resident'||ROLE==='board')?`<div class="shell">${side()}<main>${body}</main></div>`:`<main class="solo">${body}</main>`;
+ document.getElementById('foot').innerHTML=t('Mock-up portal untuk PPPSRS Fountain Park (Griya Pancoran), Pancoran, Jakarta Selatan · tidak ada data nyata · versi Nov 2026','Portal mock-up for the Fountain Park (Griya Pancoran) PPPSRS, Pancoran, South Jakarta · no real data · Nov 2026 version');
+ window.lucide&&lucide.createIcons();
+}
+const head=(eb,h,s,right='')=>`<div class="ph"><div>${eb?`<div class="eyebrow">${eb}</div>`:''}<h1>${h}</h1>${s?`<p class="sub" style="margin-top:6px">${s}</p>`:''}</div>${right}</div>`;
+
+/* ================= VIEWS ================= */
+const V={proposal:{},public:{},resident:{},board:{}};
+
+/* ---------- PROPOSAL ---------- */
+V.proposal.overview=()=>`
+<div class="hero"><div class="ripple"></div>
+ <div class="eyebrow">${t('Usulan untuk pengurus PPPSRS baru','A proposal for the new PPPSRS board')}</div>
+ <h1>${t('Satu portal online untuk mengelola Fountain Park — tanpa menyita waktu pengurus.','One online portal to run Fountain Park — without eating the board’s time.')}</h1>
+ <p>${t('Pengurus PPPSRS adalah relawan. Portal ini memindahkan pekerjaan rutin — tagihan, laporan, surat kuasa, pengingat, laporan ke pemilik — ke sistem yang berjalan sendiri, sehingga pengurus cukup mengawasi dan memutuskan.','PPPSRS board members are volunteers. This portal moves the routine work — bills, complaints, proxies, reminders, reporting to owners — into a system that runs itself, so the board only has to oversee and decide.')}</p>
+ <div class="row wrap"><button class="btn" onclick="go('resident')">${ic('house')}${t('Lihat sisi penghuni','See the resident side')}</button><button class="btn ghost" onclick="go('board')">${ic('shield-check')}${t('Lihat sisi pengurus','See the board side')}</button></div>
+</div>
+
+<div style="margin:34px 0 14px"><div class="eyebrow">${t('Tiga tingkat akses','Three levels of access')}</div><h2>${t('Siapa melihat apa','Who sees what')}</h2></div>
+<div class="grid g3">
+ <div class="tier t1"><h3>${ic('globe')}${t('Publik','Public')}</h3><div class="who2">${t('Siapa saja — calon penyewa, pembeli, tamu','Anyone — prospective tenants, buyers, visitors')}</div><ul>
+ ${[['Info gedung & kontak','Building info & contacts'],['Pengumuman umum','General announcements'],['Status fasilitas hari ini','Today’s facility status'],['Ringkasan transparansi & proyek','Transparency & project summary'],['Siapa pengurus & cara menghubungi','Who the board is & how to reach them']].map(x=>`<li>${ic('check')}${T(x)}</li>`).join('')}</ul>
+ <button class="btn sm" style="margin-top:14px;background:rgba(255,255,255,.18)" onclick="go('public')">${t('Buka contoh','Open example')} ${ic('arrow-right')}</button></div>
+ <div class="tier t2"><h3>${ic('house')}${t('Pemilik & Penghuni','Owners & residents')}</h3><div class="who2">${t('Login per unit — pemilik, penyewa terdaftar','Login per unit — owners, registered tenants')}</div><ul>
+ ${[['Tagihan IPL, dana cadangan, listrik & air — terpisah','IPL, sinking fund, electricity & water — itemised'],['Bayar online (QRIS / VA) & unduh kuitansi','Pay online (QRIS / VA) & download receipts'],['Lapor masalah & lacak perbaikannya','Report problems & track repairs'],['Booking fasilitas, izin tamu & renovasi','Facility booking, guest & renovation permits'],['Dokumen: AD/ART, laporan audit, notulen','Documents: AD/ART, audits, minutes'],['Undangan rapat, surat kuasa, nominasi & polling','Meeting notices, proxies, nominations & polls']].map(x=>`<li>${ic('check')}${T(x)}</li>`).join('')}</ul>
+ <button class="btn sm" style="margin-top:14px;background:rgba(255,255,255,.18)" onclick="go('resident')">${t('Buka contoh','Open example')} ${ic('arrow-right')}</button></div>
+ <div class="tier t3"><h3>${ic('shield-check')}${t('Pengurus & Pengelola','Board & management')}</h3><div class="who2">${t('Privat, akses sesuai peran, semua tindakan tercatat','Private, role-based access, every action logged')}</div><ul>
+ ${[['Register pemilik 112 unit','Owner register for all 112 units'],['Tunggakan & pengingat otomatis','Arrears & automatic reminders'],['Work order dengan target waktu (SLA)','Work orders with time targets (SLA)'],['Kalender kepatuhan & inspeksi','Compliance & inspection calendar'],['Rapat: undangan, kuorum, kuasa','Meetings: notices, quorum, proxies'],['Keuangan, dana cadangan, vendor, KPI pengelola','Finance, sinking fund, vendors, manager KPIs']].map(x=>`<li>${ic('check')}${T(x)}</li>`).join('')}</ul>
+ <button class="btn sm" style="margin-top:14px;background:rgba(255,255,255,.14)" onclick="go('board')">${t('Buka contoh','Open example')} ${ic('arrow-right')}</button></div>
+</div>
+
+<div style="margin:38px 0 14px"><div class="eyebrow">${t('Mengapa ini meringankan pengurus','Why this lightens the board’s load')}</div><h2>${t('Pekerjaan yang diambil alih sistem','Work the system takes over')}</h2></div>
+<div class="card"><div class="tw"><table>
+<tr><th>${t('Tugas pengurus hari ini','Board task today')}</th><th>${t('Dengan portal','With the portal')}</th></tr>
+${[
+ [['Menjawab pertanyaan tagihan satu per satu','Answering billing questions one by one'],['Pemilik melihat rincian tagihan & riwayat bayar sendiri','Owners see itemised bills & payment history themselves']],
+ [['Mengejar tunggakan secara manual','Chasing arrears by hand'],['Pengingat bertahap otomatis via WhatsApp & email — sama untuk semua pemilik','Staged automatic reminders by WhatsApp & email — the same for every owner']],
+ [['Mengumpulkan & menghitung surat kuasa','Collecting & counting proxies'],['Surat kuasa online + daftar kuasa & kuorum terhitung otomatis','Online proxies + automatic proxy list & quorum count']],
+ [['Memantau keluhan lewat grup WA','Tracking complaints in the WhatsApp group'],['Setiap laporan bernomor, punya penanggung jawab & target waktu','Every request numbered, with an owner & time target']],
+ [['Mengingat jadwal inspeksi lift, asuransi, audit, SLF','Remembering lift inspections, insurance, audit, SLF'],['Kalender kepatuhan dengan pengingat 60/30/7 hari','Compliance calendar with 60/30/7-day reminders']],
+ [['Menyusun laporan untuk pemilik','Putting together owner reports'],['Halaman transparansi terisi otomatis tiap bulan','Transparency page fills itself every month']],
+ [['Menilai kinerja pengelola','Judging the management company'],['Skor KPI bulanan dari data nyata (waktu respons, penagihan, laporan)','Monthly KPI score from real data (response times, collection, reporting)']]
+].map(r=>`<tr><td>${T(r[0])}</td><td><b style="color:var(--teal)">${T(r[1])}</b></td></tr>`).join('')}
+</table></div></div>
+
+<div class="grid g2" style="margin-top:38px">
+<div><div class="eyebrow">${t('Prinsip','Principles')}</div><h2 style="margin-bottom:14px">${t('Aturan main sistem','Ground rules for the system')}</h2>
+<div class="card list">
+${[
+ ['database','teal',['Data milik PPPSRS','The data belongs to the PPPSRS'],['Bukan milik pengelola. Jika pengelola berganti, semua data tetap pada pemilik.','Not the management company. If the manager changes, all records stay with the owners.']],
+ ['languages','sand',['Dua bahasa','Bilingual'],['Indonesia dan Inggris di setiap layar dan dokumen.','Indonesian and English on every screen and document.']],
+ ['scale','blue',['Semua pemilik diperlakukan sama','Every owner treated the same'],['Aturan penagihan dan hak suara berlaku otomatis dan seragam.','Collection and voting rules apply automatically and uniformly.']],
+ ['fingerprint','green',['Akses sesuai peran & jejak audit','Role-based access & audit trail'],['Pengelola hanya melihat yang perlu; setiap perubahan tercatat.','Management sees only what it needs; every change is logged.']],
+ ['shield','amber',['Perlindungan data pribadi','Personal data protection'],['Dirancang sesuai UU PDP (UU 27/2022): persetujuan, akses terbatas, hak hapus.','Designed around the PDP Law (Law 27/2022): consent, limited access, right to erasure.']],
+ ['message-circle','teal',['WhatsApp tetap dipakai','WhatsApp stays'],['Portal mengirim notifikasi ke WhatsApp; grup tidak perlu ditinggalkan.','The portal sends notifications to WhatsApp; nobody has to leave their groups.']]
+].map(p=>`<div><div class="ico i-${p[1]}">${ic(p[0])}</div><div class="grow"><b>${T(p[2])}</b><span class="sm mute">${T(p[3])}</span></div></div>`).join('')}
+</div></div>
+<div><div class="eyebrow">${t('Peluncuran bertahap','Phased roll-out')}</div><h2 style="margin-bottom:14px">${t('Mulai kecil, tambah bertahap','Start small, add in stages')}</h2>
+<div class="card">
+${[
+ [['Tahap 1 · Bulan 1','Phase 1 · Month 1'],['Dasar','Foundations'],[['Halaman publik','Public page'],['Register pemilik','Owner register'],['Formulir laporan','Request form'],['Perpustakaan dokumen','Document library'],['Siaran WhatsApp','WhatsApp broadcasts']]],
+ [['Tahap 2 · Bulan 2–3','Phase 2 · Months 2–3'],['Operasional','Operations'],[['Tagihan per unit (terpisah)','Itemised unit bills'],['Work order & SLA','Work orders & SLA'],['Kalender kepatuhan','Compliance calendar'],['Rapat & surat kuasa','Meetings & proxies']]],
+ [['Tahap 3 · Bulan 4–6','Phase 3 · Months 4–6'],['Layanan penuh','Full service'],[['Bayar online QRIS/VA','QRIS/VA payments'],['Booking fasilitas','Facility booking'],['Izin tamu & renovasi','Guest & renovation permits'],['KPI pengelola','Manager KPIs'],['Polling pemilik','Owner polls']]]
+].map(p=>`<div class="phase"><div class="n">${T(p[0])}</div><div><b>${T(p[1])}</b><div class="chips">${p[2].map(c=>`<span>${T(c)}</span>`).join('')}</div></div></div>`).join('')}
+</div>
+<div class="note teal" style="margin-top:14px">${ic('info')}<div>${t('Biaya hosting sangat rendah. Biaya utama: penyiapan awal, biaya per transaksi pembayaran online, dan pesan WhatsApp Business. Rincian biaya disiapkan untuk disetujui dalam rapat.','Hosting costs are very low. The main costs are initial set-up, per-transaction fees for online payments, and WhatsApp Business messages. A costed budget would be prepared for approval at a meeting.')}</div></div>
+</div></div>
+
+<div class="card" style="margin-top:38px;display:grid;grid-template-columns:1fr auto;gap:18px;align-items:center">
+<div><h2>${t('Yang dibutuhkan dari pengurus','What the board needs to decide')}</h2>
+<p class="sub" style="margin:6px 0 0">${t('Siapa penanggung jawab portal (disarankan Sekretaris) · aturan penagihan & hak suara · aturan booking fasilitas · kewajiban pengelola mengisi data · membangun sendiri secara ringan atau memakai aplikasi pengelolaan apartemen yang sudah ada — keduanya bisa dibandingkan di Tahap 1.','Who owns the portal (suggest the Secretary) · collection & voting-eligibility rules · facility booking rules · the manager’s duty to keep data up to date · build lightly in-house or use an existing apartment-management app — both can be compared in Phase 1.')}</p></div>
+<button class="btn sand" onclick="go('resident')">${t('Coba mock-up','Try the mock-up')} ${ic('arrow-right')}</button></div>`;
+
+/* ---------- PUBLIC ---------- */
+V.public.home=()=>`
+<div class="hero"><div class="ripple"></div>
+ <div class="eyebrow">Jl. KH Guru Amin, Pancoran · ${t('Jakarta Selatan','South Jakarta')}</div>
+ <h1>Fountain Park · Griya Pancoran</h1>
+ <p>${t('Portal resmi Perhimpunan Pemilik dan Penghuni Satuan Rumah Susun (PPPSRS). Informasi gedung, pengumuman, dan layanan untuk pemilik dan penghuni.','Official portal of the owners’ and residents’ association (PPPSRS). Building information, announcements and services for owners and residents.')}</p>
+ <div class="row wrap"><button class="btn" onclick="go('resident')">${ic('log-in')}${t('Masuk portal penghuni','Resident login')}</button><button class="btn ghost" onclick="toast(t('Contoh: formulir kontak publik','Example: public contact form'))">${ic('mail')}${t('Hubungi pengelola','Contact management')}</button></div>
+</div>
+<div class="grid g3" style="margin-top:20px">
+ <div class="card span2"><h3>${ic('activity')}${t('Status fasilitas hari ini','Facility status today')}</h3>
+ <div class="status">${[
+  ['Lift A','Lift A','green',['Normal','Normal']],['Lift B','Lift B','amber',['Perawatan 2 Des','Service 2 Dec']],['Air bersih','Water supply','green',['Normal','Normal']],
+  ['Kolam renang','Swimming pool','red',['Tutup — perbaikan','Closed — repairs']],['Lapangan tenis','Tennis court','amber',['Perbaikan dijadwalkan','Repair scheduled']],['Gym','Gym','green',['Buka 06–22','Open 06–22']],
+  ['Genset','Generator','green',['Siap','Ready']],['Parkir','Parking','green',['Normal','Normal']],['Pengisian EV','EV charging','green',['1 dari 2 tersedia','1 of 2 free']]
+ ].map(s=>`<div><span class="dot" style="background:var(--${s[2]})"></span><div class="grow">${t(s[0],s[1])}<div class="xs mute" style="font-weight:500">${T(s[3])}</div></div></div>`).join('')}</div></div>
+ <div class="card"><h3>${ic('phone')}${t('Kontak','Contacts')}</h3><div class="list">
+ ${[['building-2','teal',['Kantor pengelola','Management office'],['Sen–Sab 08.00–17.00','Mon–Sat 08:00–17:00']],['shield','blue',['Keamanan 24 jam','Security 24 h'],['Pos lobi utama','Main lobby post']],['siren','red',['Darurat','Emergency'],['Kebakaran 113 · Ambulans 118/119','Fire 113 · Ambulance 118/119']]].map(c=>`<div><div class="ico i-${c[1]}">${ic(c[0])}</div><div class="grow"><b>${T(c[2])}</b><span class="sm mute">${T(c[3])}</span></div></div>`).join('')}</div></div>
+</div>
+<div class="grid g3" style="margin-top:16px">
+ <div class="card span2"><h3>${ic('megaphone')}${t('Pengumuman','Announcements')}</h3><div class="list">
+ ${[['wrench','amber','2 Des',['Perawatan rutin lift B, 09.00–12.00. Gunakan lift A.','Routine service on lift B, 09:00–12:00. Please use lift A.']],['droplets','blue','7 Des',['Pengurasan tangki air atas. Air mungkin keruh sebentar sore hari.','Rooftop water tank cleaning. Water may be cloudy briefly in the afternoon.']],['file-text','teal','28 Nov',['Laporan keuangan triwulan III 2026 sudah tersedia di portal penghuni.','Q3 2026 financial report is now available in the resident portal.']]].map(a=>`<div><div class="ico i-${a[1]}">${ic(a[0])}</div><div class="grow"><span class="xs mute" style="font-weight:700">${a[2]}</span><b style="font-weight:600">${T(a[3])}</b></div></div>`).join('')}</div></div>
+ <div class="card"><h3>${ic('chart-pie')}${t('Transparansi singkat','Transparency at a glance')}</h3>
+ <div class="list">
+ <div><div class="grow"><span class="sm mute">${t('Penagihan IPL bulan lalu','IPL collected last month')}</span><b>78%</b><div class="bar" style="margin-top:6px"><i style="width:78%"></i></div></div></div>
+ <div><div class="grow"><span class="sm mute">${t('Laporan rata-rata selesai','Average request closed in')}</span><b>${t('2,1 hari','2.1 days')}</b></div></div>
+ <div><div class="grow"><span class="sm mute">${t('Proyek berjalan','Projects underway')}</span><b>${t('3 proyek','3 projects')}</b></div></div>
+ </div><p class="xs mute" style="margin-top:8px">${t('Angka contoh.','Sample figures.')}</p></div>
+</div>
+<div class="card" style="margin-top:16px"><h3>${ic('users-round')}${t('Pengurus & Pengawas PPPSRS','PPPSRS board & supervisors')}</h3>
+<div class="grid g4">${[['Ketua','Chair'],['Sekretaris','Secretary'],['Bendahara','Treasurer'],['Ketua Pengawas','Chief supervisor']].map(r=>`<div class="row"><div class="av">${ic('user-round')}</div><div><b class="sm" style="display:block">${t('Nama terpilih','Elected name')}</b><span class="xs mute">${T(r)}</span></div></div>`).join('')}</div>
+<p class="xs mute" style="margin-top:12px">${t('Diisi setelah pemilihan pengurus. Masa jabatan, tanggal rapat pemilihan dan nomor pengesahan tercantum di sini.','Filled in after the board election. Term of office, election meeting date and registration number shown here.')}</p></div>`;
+
+/* ---------- RESIDENT ---------- */
+V.resident.home=()=>`
+${head(t('Selamat pagi','Good morning'),t('Halo, Ibu Sari','Hello, Ibu Sari'),t('Unit 5C · 98 m² · Pemilik','Unit 5C · 98 m² · Owner'))}
+<div class="grid g3">
+ <div class="card" style="background:linear-gradient(140deg,#0e625d,#0f2e2c);color:#fff"><div class="sm" style="opacity:.8;font-weight:600">${t('Tagihan Desember','December bill')}</div><div style="font-size:30px;font-weight:800;margin:4px 0">${rp(2312400)}</div><div class="sm" style="opacity:.8">${t('Jatuh tempo 20 Des 2026','Due 20 Dec 2026')}</div><button class="btn" style="background:#fff;color:var(--teal);margin-top:14px" onclick="go('resident','bills')">${ic('qr-code')}${t('Bayar sekarang','Pay now')}</button></div>
+ <div class="card span2"><h3>${ic('calendar-heart')}${t('Rapat Umum Tahunan 2027','2027 Annual General Meeting')} ${pill('amber',t('Butuh tindakan','Action needed'))}</h3>
+ <p class="sm" style="color:var(--ink2)">${t('Sabtu, 27 Feb 2027 · 10.00 · Lobi utama. Agenda dan materi sudah tersedia (H-14). Konfirmasi kehadiran atau beri surat kuasa.','Saturday 27 Feb 2027 · 10:00 · Main lobby. Agenda and papers available (14 days ahead). Confirm attendance or give a proxy.')}</p>
+ <div class="row wrap" style="margin-top:12px"><button class="btn sm" onclick="go('resident','meet')">${t('Hadir / beri kuasa','Attend / give proxy')}</button><button class="btn ghost sm" onclick="go('resident','docs')">${ic('file-text')}${t('Materi rapat','Meeting papers')}</button></div></div>
+</div>
+<div class="qa" style="margin:16px 0">${[['qr-code','teal',['Bayar','Pay'],'bills'],['wrench','sand',['Lapor','Report'],'req'],['calendar-days','blue',['Booking','Book'],'book'],['ticket','green',['Izin tamu','Guest pass'],'access'],['folder-open','amber',['Dokumen','Documents'],'docs'],['vote','red',['Voting','Vote'],'meet']].map(q=>`<button onclick="go('resident','${q[3]}')"><div class="ico i-${q[1]}">${ic(q[0])}</div>${T(q[2])}</button>`).join('')}</div>
+<div class="grid g2">
+ <div class="card"><h3>${ic('wrench')}${t('Laporan saya','My requests')}</h3><div class="list">${tickets.slice(0,2).map(tk=>`<div><div class="grow"><div class="row between"><span class="xs mute" style="font-weight:700">${tk.id} · ${T(tk.cat)}</span>${tk.step===3?pill('green',t('Selesai','Done')):pill('blue',t('Dikerjakan','In progress'))}</div><b style="margin-top:3px">${T(tk.title)}</b><div class="steps">${[0,1,2,3].map(i=>`<span class="${i<=tk.step?'on':''}"></span>`).join('')}</div></div></div>`).join('')}</div></div>
+ <div class="card"><h3>${ic('megaphone')}${t('Pengumuman','Announcements')}</h3><div class="list">
+ ${[['amber','2 Des',['Perawatan lift B 09.00–12.00','Lift B service 09:00–12:00']],['blue','7 Des',['Pengurasan tangki air atas','Rooftop water tank cleaning']],['teal','28 Nov',['Laporan keuangan Q3 tersedia','Q3 financial report available']]].map(a=>`<div><span class="dot" style="background:var(--${a[0]});margin-top:7px"></span><div class="grow"><b style="font-weight:600">${T(a[2])}</b><span class="xs mute">${a[1]}</span></div></div>`).join('')}</div></div>
+</div>`;
+
+V.resident.bills=()=>{
+ const items=[[['IPL (Rp16.500 × 98 m²)','Service charge (Rp16,500 × 98 m²)'],1617000],[['Dana cadangan (sinking fund)','Sinking fund'],161700],[['Listrik — 412 kWh','Electricity — 412 kWh'],473800],[['Air — 18 m³','Water — 18 m³'],59900],[['Denda keterlambatan','Late fee'],0]];
+ const tot=items.reduce((a,b)=>a+b[1],0);
+ return `${head('',t('Tagihan & Pembayaran','Bills & payments'),t('Setiap komponen terpisah — IPL, dana cadangan, listrik dan air — sehingga jelas apa yang dibayar.','Every component shown separately — service charge, sinking fund, electricity and water — so it is clear what you pay for.'))}
+ <div class="grid g3">
+ <div class="card span2"><div class="row between"><h3 style="margin:0">${ic('receipt')}${t('Tagihan Desember 2026','December 2026 bill')}</h3>${pill('amber',t('Belum dibayar','Unpaid'))}</div>
+ <div class="tw" style="margin-top:10px"><table>${items.map(i=>`<tr><td>${T(i[0])}</td><td class="num">${rp(i[1])}</td></tr>`).join('')}<tr><td><b>${t('Total','Total')}</b></td><td class="num"><b style="font-size:17px">${rp(tot)}</b></td></tr></table></div>
+ <div class="row wrap" style="margin-top:12px"><button class="btn ghost sm">${ic('download')}${t('Unduh invoice PDF','Download PDF invoice')}</button><button class="btn ghost sm">${ic('history')}${t('Riwayat 24 bulan','24-month history')}</button></div></div>
+ <div class="card"><h3>${ic('wallet')}${t('Bayar','Pay')}</h3>
+ <div style="display:flex;flex-direction:column;align-items:center;gap:10px;padding:6px 0 10px"><div class="qr"></div><span class="xs mute">${t('Pindai QRIS dengan aplikasi bank / e-wallet','Scan QRIS with any bank or e-wallet app')}</span></div>
+ <div class="list sm">
+ <div><div class="ico i-blue">${ic('landmark')}</div><div class="grow"><b>Virtual Account BCA</b><span class="mute">8077 0005 0C12 2026</span></div></div>
+ <div><div class="ico i-teal">${ic('repeat')}</div><div class="grow"><b>${t('Debit otomatis','Auto-debit')}</b><span class="mute">${t('Bayar tiap tanggal 15','Pay on the 15th monthly')}</span></div><div class="tg off"></div></div>
+ </div>
+ <button class="btn" style="width:100%;justify-content:center;margin-top:12px" onclick="toast(t('Contoh: pembayaran dikonfirmasi otomatis & kuitansi dikirim','Example: payment confirmed automatically & receipt sent'))">${t('Saya sudah bayar','I have paid')}</button></div>
+ </div>
+ <div class="card" style="margin-top:16px"><h3>${ic('history')}${t('Pembayaran terakhir','Recent payments')}</h3><div class="tw"><table><tr><th>${t('Periode','Period')}</th><th>${t('Metode','Method')}</th><th>${t('Status','Status')}</th><th class="num">${t('Jumlah','Amount')}</th><th></th></tr>
+ ${[['Nov 2026','QRIS',2287100],['Okt 2026','VA BCA',2301600],['Sep 2026','VA BCA',2265300]].map(p=>`<tr><td>${p[0]}</td><td>${p[1]}</td><td>${pill('green',t('Lunas','Paid'))}</td><td class="num">${rp(p[2])}</td><td class="num"><button class="btn ghost sm">${ic('download')}${t('Kuitansi','Receipt')}</button></td></tr>`).join('')}</table></div></div>`;
+};
+
+V.resident.req=()=>`${head('',t('Laporan & Permintaan','Requests & complaints'),t('Setiap laporan mendapat nomor, penanggung jawab dan target waktu. Anda menerima kabar di WhatsApp sampai selesai.','Every request gets a number, an owner and a time target. You get WhatsApp updates until it is closed.'))}
+<div class="grid g2">
+<div class="card"><h3>${ic('plus-circle')}${t('Laporan baru','New request')}</h3>
+ <div class="field"><label>${t('Kategori','Category')}</label><select id="rc">${[['Kebocoran / air','Leak / water'],['Listrik','Electrical'],['Lift','Lift'],['Kebersihan','Cleaning'],['Keamanan','Security'],['Fasilitas umum','Common facilities'],['Parkir','Parking'],['Keluhan / saran','Complaint / suggestion']].map(o=>`<option>${T(o)}</option>`).join('')}</select></div>
+ <div class="field"><label>${t('Lokasi','Location')}</label><select><option>${t('Di dalam unit saya (5C)','Inside my unit (5C)')}</option><option>${t('Area umum','Common area')}</option></select></div>
+ <div class="field"><label>${t('Jelaskan masalahnya','Describe the problem')}</label><textarea id="rd" placeholder="${t('Contoh: lampu koridor lantai 5 mati sejak kemarin','E.g. floor 5 corridor light out since yesterday')}"></textarea></div>
+ <div class="drop">${ic('camera')}${t('Tambahkan foto atau video','Add photos or video')}</div>
+ <label class="row sm" style="margin:12px 0"><input type="checkbox" checked> ${t('Teknisi boleh masuk unit jika saya tidak di rumah','Technician may enter if I am out')}</label>
+ <button class="btn" onclick="addTicket()">${ic('send')}${t('Kirim laporan','Submit request')}</button></div>
+<div class="card"><h3>${ic('list-checks')}${t('Laporan saya','My requests')}</h3><div class="list">
+ ${tickets.map(tk=>`<div><div class="grow"><div class="row between"><span class="xs mute" style="font-weight:700">${tk.id} · ${T(tk.cat)} · ${tk.date}</span>${tk.step===3?pill('green',t('Selesai','Done')):tk.step===0?pill('grey',t('Diterima','Received')):pill('blue',t('Dikerjakan','In progress'))}</div>
+ <b style="margin-top:3px">${T(tk.title)}</b>
+ <div class="steps">${[0,1,2,3].map(i=>`<span class="${i<=tk.step?'on':''}"></span>`).join('')}</div>
+ <div class="row between xs mute" style="margin-top:6px"><span>${ic('user-cog')} ${T(tk.who)}</span><span>${T(tk.sla)}</span></div>
+ ${tk.step===3?`<div class="row xs" style="margin-top:6px;color:var(--sand)">${'★'.repeat(4)}☆ <span class="mute">${t('Nilai layanan','Rate the service')}</span></div>`:''}</div></div>`).join('')}
+</div></div></div>`;
+function addTicket(){const d=(document.getElementById('rd').value||t('Laporan baru','New request')).slice(0,80);const c=document.getElementById('rc').value;tickets.unshift({id:'FP-10'+(43+tickets.length),cat:[c,c],title:[d,d],step:0,date:t('Hari ini','Today'),who:['Menunggu penugasan','Awaiting assignment'],sla:['Target 48 jam','48-hour target']});render();toast(t('Laporan terkirim — konfirmasi dikirim ke WhatsApp','Request submitted — confirmation sent to WhatsApp'));}
+
+V.resident.book=()=>{
+ const F=[[['Lapangan tenis','Tennis court'],['Maks. 2 jam','Max 2 h'],'Rp0'],[['Ruang serbaguna','Function room'],['Acara & arisan','Events & gatherings'],'Rp250.000'],[['Area BBQ kolam','Pool BBQ area'],['Deposit kebersihan','Cleaning deposit'],'Rp100.000'],[['Pengisian EV','EV charger'],['Per kWh','Per kWh'],t('Sesuai pemakaian','Metered')]];
+ const days=['Sen','Sel','Rab','Kam','Jum','Sab','Min'],dEn=['Mon','Tue','Wed','Thu','Fri','Sat','Sun'];
+ const slots=['07:00','08:00','09:00','10:00','15:00','16:00','17:00','18:00','19:00','20:00','21:00','22:00'];
+ const taken=[1,4,8,9];
+ return `${head('',t('Booking Fasilitas','Facility booking'),t('Lihat jadwal kosong dan pesan langsung — tanpa menelepon kantor pengelola.','See free slots and book directly — no need to call the office.'))}
+ <div class="fac">${F.map((f,i)=>`<button class="${fac===i?'on':''}" onclick="fac=${i};slot=null;render()">${T(f[0])}<span>${T(f[1])} · ${f[2]}</span></button>`).join('')}</div>
+ <div class="grid g3"><div class="card span2"><h3>${ic('calendar-days')}${t('Pilih tanggal & jam','Choose date & time')}</h3>
+ <div class="days">${days.map((d,i)=>`<button class="${day===i?'on':''}" onclick="day=${i};slot=null;render()">${t(d,dEn[i])}<b>${i===0?30:i}</b></button>`).join('')}</div>
+ <div class="slots">${slots.map((s,i)=>`<button class="${taken.includes((i+day+fac)%12)?'taken':''} ${slot===i?'sel':''}" ${taken.includes((i+day+fac)%12)?'disabled':`onclick="slot=${i};render()"`}>${s}</button>`).join('')}</div>
+ ${fac===0?`<div class="note" style="margin-top:14px">${ic('triangle-alert')}<div>${t('Lapangan tenis sedang menunggu perbaikan permukaan. Booking tetap dibuka dengan catatan kondisi.','The tennis court is awaiting resurfacing. Booking stays open with a condition notice.')}</div></div>`:''}</div>
+ <div class="card"><h3>${ic('clipboard-check')}${t('Ringkasan','Summary')}</h3>
+ <div class="list sm"><div><div class="grow"><span class="mute">${t('Fasilitas','Facility')}</span><b>${T(F[fac][0])}</b></div></div><div><div class="grow"><span class="mute">${t('Waktu','Time')}</span><b>${slot===null?t('Belum dipilih','Not chosen'):t(days[day],dEn[day])+' · '+slots[slot]}</b></div></div><div><div class="grow"><span class="mute">${t('Biaya','Cost')}</span><b>${F[fac][2]}</b></div></div></div>
+ <label class="row xs mute" style="margin:12px 0"><input type="checkbox" checked> ${t('Saya setuju dengan tata tertib fasilitas','I agree to the facility rules')}</label>
+ <button class="btn" style="width:100%;justify-content:center" onclick="${slot===null?`toast(t('Pilih jam dulu','Pick a time first'))`:`toast(t('Booking dikonfirmasi — pengingat dikirim H-1','Booking confirmed — reminder sent the day before'))`}">${t('Pesan','Book')}</button></div></div>`;
+};
+
+V.resident.access=()=>`${head('',t('Izin & Akses','Permits & access'),t('Ajukan izin online; satpam dan pengelola menerima pemberitahuan otomatis.','Apply online; security and management are notified automatically.'))}
+<div class="grid g2">
+ <div class="card"><h3>${ic('ticket')}${t('Kartu tamu digital','Digital guest pass')}</h3><div class="row" style="gap:16px;align-items:flex-start"><div class="qr" style="width:96px;height:96px"></div><div class="grow"><div class="field"><label>${t('Nama tamu','Guest name')}</label><input value="Rina (${t('keluarga','family')})"></div><div class="field"><label>${t('Tanggal','Date')}</label><input value="30 Nov 2026 · 18.00"></div></div></div><button class="btn sm" onclick="toast(t('QR tamu dikirim ke WhatsApp tamu','Guest QR sent to the guest’s WhatsApp'))">${ic('send')}${t('Kirim ke tamu','Send to guest')}</button></div>
+ <div class="card"><h3>${ic('list')}${t('Jenis izin lain','Other permits')}</h3><div class="list">
+ ${[['hammer','amber',['Izin renovasi / kontraktor','Renovation / contractor permit'],['Jam kerja, deposit, daftar pekerja','Working hours, deposit, worker list']],['truck','blue',['Pindahan masuk / keluar','Move in / move out'],['Booking lift barang & jadwal','Service lift booking & schedule']],['users','teal',['Daftarkan penyewa','Register a tenant'],['Masa sewa & kontak darurat','Lease period & emergency contact']],['car','green',['Stiker parkir & kartu akses','Parking sticker & access card'],['Tambah / ganti kendaraan','Add / change vehicle']],['package','sand',['Titip paket di lobi','Parcels at the lobby'],['Notifikasi saat paket tiba','Notified when a parcel arrives']]].map(p=>`<div><div class="ico i-${p[1]}">${ic(p[0])}</div><div class="grow"><b>${T(p[2])}</b><span class="sm mute">${T(p[3])}</span></div><button class="btn ghost sm">${t('Ajukan','Apply')}</button></div>`).join('')}</div></div>
+</div>`;
+
+V.resident.docs=()=>`${head('',t('Dokumen','Documents'),t('Semua dokumen resmi di satu tempat, terbuka untuk setiap pemilik.','All official documents in one place, open to every owner.'),`<div class="field" style="margin:0;min-width:240px"><input placeholder="${t('Cari dokumen…','Search documents…')}"></div>`)}
+<div class="grid g2">${[
+ ['scale','teal',['Legal & pendirian','Legal & constitution'],[['Akta Pendirian PPPSRS','PPPSRS founding deed'],['AD/ART (versi berlaku)','AD/ART (current version)'],['Surat pengesahan / pencatatan','Registration / approval letter'],['Sertifikat Laik Fungsi (SLF)','Certificate of fitness (SLF)'],['Ringkasan status SHGB','SHGB land title status note']]],
+ ['landmark','sand',['Keuangan','Finance'],[['Laporan audit FY2015–FY2025','Audited accounts FY2015–FY2025'],['Laporan triwulan III 2026','Q3 2026 quarterly report'],['Anggaran 2027 (usulan)','2027 budget (proposed)'],['Rencana dana cadangan 10 tahun','10-year sinking fund plan']]],
+ ['users-round','blue',['Rapat','Meetings'],[['Undangan RUT 2027 + materi','2027 AGM notice + papers'],['Notulen rapat terakhir','Latest meeting minutes'],['Template surat kuasa','Proxy form template']]],
+ ['book-open','green',['Aturan & panduan','Rules & guides'],[['Tata Tertib Penghunian','House rules'],['Aturan renovasi','Renovation rules'],['Aturan kolam & gym','Pool & gym rules'],['Panduan darurat & evakuasi','Emergency & evacuation guide']]]
+].map(c=>`<div class="card"><h3><span class="ico i-${c[1]}" style="width:30px;height:30px">${ic(c[0])}</span>${T(c[2])}</h3><div class="list">${c[3].map(d=>`<div style="align-items:center"><div class="grow"><b style="font-weight:600">${T(d)}</b></div>${pill('grey','PDF · ID/EN')}<button class="btn ghost sm" style="padding:6px 9px">${ic('download')}</button></div>`).join('')}</div></div>`).join('')}</div>`;
+
+V.resident.meet=()=>{
+ const tot=poll.reduce((a,b)=>a+b.v,0);
+ return `${head('',t('Rapat & Voting','Meetings & voting'),t('Undangan, materi, surat kuasa, nominasi dan pertanyaan — semuanya sebelum rapat. Keputusan resmi tetap diambil di rapat.','Notices, papers, proxies, nominations and questions — all before the meeting. Formal decisions are still taken at the meeting.'))}
+ <div class="grid g3">
+ <div class="card span2"><div class="row between wrap"><h3 style="margin:0">${ic('calendar-heart')}${t('Rapat Umum Tahunan 2027','2027 Annual General Meeting')}</h3>${pill('teal',t('Undangan H-14 terkirim','14-day notice sent'))}</div>
+ <p class="sm" style="color:var(--ink2);margin:8px 0 12px">${t('Sabtu, 27 Februari 2027 · 10.00 WIB · Lobi utama','Saturday 27 February 2027 · 10:00 WIB · Main lobby')}</p>
+ <div class="list">${[['Pembukaan & pengecekan kuorum','Opening & quorum check'],['Laporan pertanggungjawaban pengurus 2026','Board’s 2026 accountability report'],['Pengesahan laporan keuangan audit 2026','Approval of 2026 audited accounts'],['Anggaran 2027 & besaran IPL','2027 budget & service charge level'],['Rencana dana cadangan & prioritas perbaikan','Sinking fund plan & repair priorities']].map((a,i)=>`<div style="align-items:center"><div class="ico i-teal" style="width:28px;height:28px;font-weight:800;font-size:13px">${i+1}</div><div class="grow"><b style="font-weight:600">${T(a)}</b></div><button class="btn ghost sm" style="padding:5px 9px">${ic('file-text')}</button></div>`).join('')}</div></div>
+ <div class="card"><h3>${ic('user-check')}${t('Kehadiran Anda','Your attendance')}</h3>
+ <div class="field"><label>${t('Saya akan…','I will…')}</label><select id="att" onchange="render()"><option>${t('Hadir sendiri','Attend in person')}</option><option>${t('Memberi kuasa','Give a proxy')}</option></select></div>
+ <div class="field"><label>${t('Penerima kuasa','Proxy holder')}</label><input placeholder="${t('Nama & unit penerima kuasa','Name & unit of proxy holder')}"></div>
+ <div class="drop">${ic('stamp')}${t('Unggah surat kuasa bertanda tangan & bermeterai','Upload signed proxy with duty stamp')}</div>
+ <button class="btn" style="width:100%;justify-content:center;margin-top:12px" onclick="toast(t('Tercatat — pengurus melihat Anda di daftar kehadiran','Recorded — the board sees you on the attendance list'))">${t('Konfirmasi','Confirm')}</button>
+ <p class="xs mute" style="margin-top:8px">${t('Bentuk surat kuasa mengikuti AD/ART dan peraturan yang berlaku.','Proxy format follows the AD/ART and current regulations.')}</p></div>
+ </div>
+ <div class="grid g2" style="margin-top:16px">
+ <div class="card"><h3>${ic('bar-chart-3')}${t('Polling pemilik: prioritas perbaikan 2027','Owner poll: 2027 repair priorities')} ${pill('grey',t('Konsultatif','Consultative'))}</h3>
+ <div class="list">${poll.map((p,i)=>`<div style="display:block"><div class="row between sm"><b style="font-weight:600">${T(p.l)}</b><span class="mute">${voted?Math.round(p.v/tot*100)+'%':''}</span></div>${voted?`<div class="bar" style="margin-top:6px"><i style="width:${p.v/tot*100}%"></i></div>`:`<button class="btn ghost sm" style="margin-top:6px" onclick="poll[${i}].v++;voted=true;render();toast(t('Suara tercatat — satu suara per unit','Vote recorded — one vote per unit'))">${t('Pilih','Choose')}</button>`}</div>`).join('')}</div>
+ <p class="xs mute" style="margin-top:8px">${voted?tot+' '+t('unit telah memilih','units have voted'):t('Satu suara per unit. Hasil terlihat setelah memilih.','One vote per unit. Results shown after voting.')}</p></div>
+ <div class="card"><h3>${ic('message-circle-question')}${t('Nominasi & pertanyaan','Nominations & questions')}</h3>
+ <div class="list"><div><div class="ico i-sand">${ic('user-plus')}</div><div class="grow"><b>${t('Calonkan diri sebagai pengurus / pengawas','Stand for the board or supervisors')}</b><span class="sm mute">${t('Ditutup 13 Feb 2027 · syarat: pemilik, tanpa tunggakan >90 hari (contoh)','Closes 13 Feb 2027 · must be an owner, no arrears >90 days (example)')}</span></div></div>
+ <div><div class="ico i-blue">${ic('message-square')}</div><div class="grow"><b>${t('Kirim pertanyaan untuk rapat','Send a question for the meeting')}</b><span class="sm mute">${t('Dijawab tertulis sebelum atau di rapat','Answered in writing before or at the meeting')}</span></div></div></div>
+ <div class="field" style="margin-top:10px"><textarea placeholder="${t('Pertanyaan Anda…','Your question…')}"></textarea></div><button class="btn sm" onclick="toast(t('Pertanyaan terkirim ke sekretaris','Question sent to the secretary'))">${t('Kirim','Send')}</button></div>
+ </div>`;
+};
+
+V.resident.trans=()=>{
+ const m=['Jun','Jul','Agu','Sep','Okt','Nov'],me=['Jun','Jul','Aug','Sep','Oct','Nov'],inc=[640,655,672,690,701,714],exp=[612,598,640,655,630,668];
+ return `${head('',t('Transparansi','Transparency'),t('Diperbarui otomatis setiap bulan dari sistem keuangan — tanpa menunggu rapat tahunan.','Updated automatically every month from the finance system — no waiting for the AGM.'))}
+ <div class="grid g4">${[['hand-coins',['Penagihan bulan ini','Collected this month'],'78%','up',['+6 poin vs bulan lalu','+6 pts vs last month']],['piggy-bank',['Dana cadangan','Sinking fund'],rp(1840000000),'up',['Rekening terpisah','Separate account']],['wrench',['Laporan selesai (30 hari)','Requests closed (30 days)'],'46','up',['Rata-rata 2,1 hari','Avg 2.1 days']],['file-check',['Laporan tepat waktu','Reports on time'],'6/6','up',['Bulanan & triwulan','Monthly & quarterly']]].map(k=>`<div class="card kpi"><div class="l">${ic(k[0])}${T(k[1])}</div><div class="v">${k[2]}</div><div class="d ${k[3]}">${T(k[4])}</div></div>`).join('')}</div>
+ <div class="grid g2" style="margin-top:16px">
+ <div class="card"><div class="row between"><h3 style="margin:0">${ic('chart-column')}${t('Pendapatan vs pengeluaran (juta Rp)','Income vs spending (Rp million)')}</h3></div>
+ <div class="legend" style="margin-top:8px"><span><i style="background:var(--teal)"></i>${t('Pendapatan','Income')}</span><span><i style="background:var(--sand)"></i>${t('Pengeluaran','Spending')}</span></div>
+ <div class="chart">${m.map((x,i)=>`<div><div class="dual"><i style="height:${inc[i]/8}%"></i><i class="b" style="height:${exp[i]/8}%"></i></div><span>${t(x,me[i])}</span></div>`).join('')}</div></div>
+ <div class="card"><h3>${ic('hammer')}${t('Proyek perbaikan','Repair projects')}</h3><div class="list">
+ ${[[['Perbaikan kolam renang','Swimming pool repair'],45,['Pengerjaan · selesai Mar 2027','In progress · done Mar 2027'],'blue'],[['Resurfacing jalan masuk','Driveway resurfacing'],15,['Tender · 3 penawaran masuk','Tender · 3 bids received'],'amber'],[['Tambah 4 titik pengisian EV','4 more EV chargers'],5,['Survei daya listrik','Power capacity survey'],'grey'],[['Lapangan tenis','Tennis court'],0,['Menunggu persetujuan anggaran','Awaiting budget approval'],'grey']].map(p=>`<div style="display:block"><div class="row between"><b style="font-weight:600">${T(p[0])}</b>${pill(p[3],p[1]+'%')}</div><div class="bar" style="margin:7px 0 4px"><i style="width:${p[1]}%"></i></div><span class="xs mute">${T(p[2])}</span></div>`).join('')}</div></div>
+ </div>`;
+};
+
+V.resident.prof=()=>`${head('',t('Profil & Unit','Profile & unit'),t('Data Anda dipakai hanya untuk pengelolaan gedung, sesuai UU Perlindungan Data Pribadi.','Your data is used only to run the building, in line with the Personal Data Protection Law.'))}
+<div class="grid g2">
+ <div class="card"><h3>${ic('house')}${t('Unit 5C','Unit 5C')} ${pill('green',t('Terverifikasi','Verified'))}</h3><div class="list sm">
+ ${[[['Pemilik tercatat','Owner of record'],'Sari Wulandari'],[['Luas','Area'],'98 m²'],[['Status hunian','Occupancy'],t('Dihuni pemilik','Owner-occupied')],[['Dokumen','Documents'],t('Sertifikat & KTP diterima 14 Agu 2026','Certificate & ID received 14 Aug 2026')],[['Kendaraan','Vehicles'],'B 1234 SWA · B 5678 KLM'],[['Hak suara','Voting rights'],t('Aktif','Active')]].map(r=>`<div><div class="grow"><span class="mute">${T(r[0])}</span><b style="font-weight:600">${r[1]}</b></div></div>`).join('')}</div></div>
+ <div class="card"><h3>${ic('bell')}${t('Notifikasi & bahasa','Notifications & language')}</h3><div class="list">
+ ${[[['Tagihan & pengingat','Bills & reminders'],'WhatsApp + email',1],[['Pengumuman gedung','Building announcements'],'WhatsApp',1],[['Status laporan saya','My request updates'],'WhatsApp',1],[['Undangan rapat','Meeting notices'],t('Email + surat fisik','Email + paper letter'),1],[['Buletin bulanan','Monthly newsletter'],'Email',0]].map(n=>`<div style="align-items:center"><div class="grow"><b style="font-weight:600">${T(n[0])}</b><span class="xs mute">${n[1]}</span></div><div class="tg ${n[2]?'':'off'}"></div></div>`).join('')}
+ <div style="align-items:center"><div class="grow"><b style="font-weight:600">${t('Bahasa','Language')}</b></div><div class="lang"><button class="${LANG==='id'?'on':''}" onclick="setLang('id')">ID</button><button class="${LANG==='en'?'on':''}" onclick="setLang('en')">EN</button></div></div></div></div>
+</div>`;
+
+/* ---------- BOARD ---------- */
+V.board.dash=()=>{
+ const mo=['Des','Jan','Feb','Mar','Apr','Mei','Jun','Jul','Agu','Sep','Okt','Nov'],moe=['Dec','Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov'],cr=[58,60,59,63,62,66,65,68,70,71,72,78];
+ return `${head(t('Senin, 30 Nov 2026','Monday 30 Nov 2026'),t('Dasbor pengurus','Board dashboard'),t('Semua yang perlu diketahui pengurus dalam satu layar — sekitar 15 menit seminggu.','Everything the board needs on one screen — about 15 minutes a week.'),`<button class="btn" onclick="toast(t('Contoh: ringkasan mingguan dikirim ke WhatsApp pengurus','Example: weekly summary sent to the board’s WhatsApp'))">${ic('send')}${t('Kirim ringkasan mingguan','Send weekly summary')}</button>`)}
+ <div class="grid g4">${[['hand-coins',['Penagihan November','November collection'],'78%','up',['+6 poin','+6 pts']],['triangle-alert',['Unit menunggak >90 hari','Units >90 days overdue'],'21','down',['−3 bulan ini','−3 this month']],['clipboard-list',['Work order terbuka','Open work orders'],'14','down',['3 melewati SLA','3 past SLA']],['book-user',['Register terverifikasi','Register verified'],'64/112','up',['57%','57%']]].map(k=>`<div class="card kpi"><div class="l">${ic(k[0])}${T(k[1])}</div><div class="v">${k[2]}</div><div class="d ${k[3]}">${T(k[4])}</div></div>`).join('')}</div>
+ <div class="grid g3" style="margin-top:16px">
+ <div class="card span2"><h3>${ic('trending-up')}${t('Tingkat penagihan IPL — 12 bulan','IPL collection rate — 12 months')}</h3>
+ <div class="chart" style="height:170px">${cr.map((v,i)=>`<div><i style="height:${v}%;${i===11?'background:var(--sand)':''}"></i><span>${t(mo[i],moe[i])}</span></div>`).join('')}</div></div>
+ <div class="card"><h3>${ic('bell-ring')}${t('Perlu keputusan','Needs a decision')}</h3><div class="list">
+ ${[['amber',['Setujui 3 penawaran resurfacing','Approve driveway tender shortlist'],['Bendahara + Ketua','Treasurer + Chair']],['red',['Uji riksa lift A jatuh tempo 14 hari','Lift A inspection due in 14 days'],['Pengelola','Management']],['blue',['Kirim undangan RUT (H-14: 13 Feb)','Send AGM notice (14 days: 13 Feb)'],['Sekretaris','Secretary']],['teal',['Rencana cicilan unit 7F','Payment plan for unit 7F'],['Bendahara','Treasurer']]].map(a=>`<div><span class="dot" style="background:var(--${a[0]});margin-top:7px"></span><div class="grow"><b style="font-weight:600">${T(a[1])}</b><span class="xs mute">${T(a[2])}</span></div></div>`).join('')}</div></div>
+ </div>
+ <div class="grid g2" style="margin-top:16px">
+ <div class="card"><h3>${ic('gauge')}${t('Skor pengelola bulan ini','Manager score this month')}</h3><div class="row" style="gap:18px"><div style="font-size:44px;font-weight:800;color:var(--teal)">82</div><div class="grow sm" style="color:var(--ink2)">${t('dari 100 · naik dari 74. Lemah: laporan melewati SLA, kebersihan area parkir.','out of 100 · up from 74. Weak spots: requests past SLA, car park cleanliness.')}</div></div><button class="btn ghost sm" style="margin-top:10px" onclick="go('board','kpi')">${t('Lihat rincian','See details')} ${ic('arrow-right')}</button></div>
+ <div class="card"><h3>${ic('calendar-check')}${t('Kepatuhan berikutnya','Next compliance items')}</h3><div class="list">${[['red',['Uji riksa lift A','Lift A statutory inspection'],'14 Des'],['amber',['Perpanjangan asuransi gedung','Building insurance renewal'],'31 Des'],['amber',['Pengurasan tangki air','Water tank cleaning'],'7 Des']].map(c=>`<div><span class="dot" style="background:var(--${c[0]});margin-top:7px"></span><div class="grow"><b style="font-weight:600">${T(c[1])}</b></div><span class="sm mute">${c[2]}</span></div>`).join('')}</div></div>
+ </div>`;
+};
+
+V.board.reg=()=>{
+ const R=[['1A','Hendro K.',1,['Pemilik','Owner'],'WA ✓',1],['2C','PT Graha Contoh',1,['Disewa','Let'],'WA ✓',1],['3F','Lina M.',0,['Kosong','Empty'],'—',1],['4B','Budi S.',1,['Pemilik','Owner'],'WA ✓',1],['5C','Sari W.',1,['Pemilik','Owner'],'WA ✓',1],['6E','Agus P.',0,['Disewa','Let'],'Email',0],['7F','Dewi R.',1,['Pemilik','Owner'],'WA ✓',0],['8A','Michael T.',1,['Disewa','Let'],'Email',1],['9C','Ratna H.',0,['Kosong','Empty'],'—',1],['10D','Yusuf A.',1,['Pemilik','Owner'],'WA ✓',1]];
+ return `${head('',t('Register Pemilik','Owner register'),t('Satu daftar resmi 112 unit: pemilik tercatat, penghuni, kontak dan hak suara — dasar untuk undangan, kuorum dan penagihan.','One official list of 112 units: owner of record, occupants, contacts and voting status — the basis for notices, quorum and billing.'),`<div class="row"><button class="btn ghost sm">${ic('upload')}${t('Impor Excel','Import Excel')}</button><button class="btn sm">${ic('send')}${t('Minta verifikasi','Request verification')}</button></div>`)}
+ <div class="grid g4" style="margin-bottom:16px">${[[['Terverifikasi','Verified'],64,'green'],[['Menunggu dokumen','Awaiting documents'],31,'amber'],[['Tidak ada kontak','No contact'],17,'red'],[['Pemilik multi-unit','Multi-unit owners'],9,'blue']].map(s=>`<div class="card kpi"><div class="l"><span class="dot" style="background:var(--${s[2]})"></span>${T(s[0])}</div><div class="v">${s[1]}</div></div>`).join('')}</div>
+ <div class="card"><div class="tw"><table><tr><th>Unit</th><th>${t('Pemilik tercatat','Owner of record')}</th><th>${t('Verifikasi','Verified')}</th><th>${t('Hunian','Occupancy')}</th><th>${t('Kontak','Contact')}</th><th>${t('Hak suara','Voting')}</th></tr>
+ ${R.map(r=>`<tr><td><b>${r[0]}</b></td><td>${r[1]}</td><td>${r[2]?pill('green',t('Ya','Yes')):pill('amber',t('Menunggu','Pending'))}</td><td>${T(r[3])}</td><td class="sm">${r[4]}</td><td>${r[5]?pill('teal',t('Aktif','Active')):pill('grey',t('Ditangguhkan','Suspended'))}</td></tr>`).join('')}</table></div>
+ <p class="xs mute" style="margin-top:10px">${t('Menampilkan 10 dari 112 unit · nama contoh · status hak suara mengikuti aturan AD/ART yang disetujui rapat.','Showing 10 of 112 units · sample names · voting status follows the AD/ART rule approved by the meeting.')}</p></div>`;
+};
+
+V.board.arr=()=>`${head('',t('Tunggakan & Penagihan','Arrears & collection'),t('Satu aturan untuk semua pemilik, dijalankan otomatis. Setiap komponen dilacak terpisah.','One rule for every owner, applied automatically. Each component tracked separately.'))}
+<div class="grid g3">
+ <div class="card span2"><h3>${ic('bar-chart-horizontal')}${t('Umur tunggakan (jumlah unit)','Arrears ageing (units)')}</h3><div class="list">
+ ${[['0–30 '+t('hari','days'),38,'teal'],['31–60 '+t('hari','days'),14,'amber'],['61–90 '+t('hari','days'),8,'amber'],['> 90 '+t('hari','days'),21,'red']].map(b=>`<div style="display:block"><div class="row between sm"><b style="font-weight:600">${b[0]}</b><span class="mute">${b[1]} unit</span></div><div class="bar" style="margin-top:6px;height:10px"><i style="width:${b[1]/40*100}%;background:var(--${b[2]})"></i></div></div>`).join('')}</div></div>
+ <div class="card"><h3>${ic('layers')}${t('Per komponen','By component')}</h3><div class="tw"><table>${[['IPL',62],[t('Dana cadangan','Sinking fund'),11],[t('Listrik','Electricity'),21],[t('Air','Water'),6]].map(c=>`<tr><td>${c[0]}</td><td class="num">${c[1]}%</td></tr>`).join('')}</table></div><p class="xs mute" style="margin-top:6px">${t('Porsi dari total tunggakan (contoh).','Share of total arrears (sample).')}</p></div>
+</div>
+<div class="card" style="margin-top:16px"><h3>${ic('route')}${t('Alur pengingat otomatis','Automatic reminder sequence')}</h3>
+<div class="grid g4">${[['H+3',['Pengingat ramah via WhatsApp','Friendly WhatsApp reminder'],'teal'],['H+30',['Email + surat dengan rincian','Email + letter with breakdown'],'blue'],['H+60',['Surat peringatan resmi; tawaran cicilan','Formal warning; payment-plan offer'],'amber'],['H+90',['Hak suara ditangguhkan sesuai AD/ART; dibahas pengurus','Voting suspended per AD/ART; board review'],'red']].map(s=>`<div style="background:var(--${s[2]}bg);border-radius:12px;padding:12px"><b style="color:var(--${s[2]});font-size:18px">${s[0]}</b><div class="sm" style="margin-top:4px;font-weight:600">${T(s[1])}</div></div>`).join('')}</div>
+<div class="note" style="margin-top:14px">${ic('scale')}<div>${t('Urutan dan batas hari ini contoh; aturan sebenarnya ditetapkan rapat pemilik dan dicantumkan di AD/ART. Sistem menerapkannya sama untuk setiap unit, termasuk unit pengurus.','The steps and day limits here are examples; the real rule is set by the owners’ meeting and written into the AD/ART. The system applies it the same way to every unit, board members’ included.')}</div></div></div>
+<div class="card" style="margin-top:16px"><h3>${ic('handshake')}${t('Rencana cicilan aktif','Active payment plans')}</h3><div class="tw"><table><tr><th>Unit</th><th>${t('Mulai','Start')}</th><th>${t('Cicilan','Instalments')}</th><th>${t('Status','Status')}</th></tr>
+${[['7F','Okt 2026','3/12','green',['Sesuai jadwal','On track']],['3B','Agu 2026','4/6','amber',['Terlambat 1x','1 late']],['9E','Nov 2026','1/10','green',['Sesuai jadwal','On track']]].map(r=>`<tr><td><b>${r[0]}</b></td><td>${r[1]}</td><td>${r[2]}</td><td>${pill(r[3],T(r[4]))}</td></tr>`).join('')}</table></div></div>`;
+
+V.board.wo=()=>{
+ const C=[[['Baru','New'],[['FP-1044',['Kebocoran','Leak'],['Pipa bocor di area parkir B1','Pipe leak in B1 car park'],'red',['SLA lewat','Past SLA']],['FP-1045',['Listrik','Electrical'],['Lampu koridor lt. 9 mati','Floor 9 corridor light out'],'amber',['Sisa 6 jam','6 h left']]]],
+ [['Ditugaskan','Assigned'],[['FP-1043',['Keamanan','Security'],['CCTV pintu samping offline','Side gate CCTV offline'],'red',['SLA lewat','Past SLA']],['FP-1041',['Kebersihan','Cleaning'],['Bau dari saluran sampah lt. 3','Smell from rubbish chute, floor 3'],'teal',['Sisa 20 jam','20 h left']]]],
+ [['Dikerjakan','In progress'],[['FP-1042',['Kebocoran','Leak'],['Rembesan plafon kamar mandi 5C','Bathroom ceiling seepage, 5C'],'teal',['Sisa 19 jam','19 h left']],['FP-1036',['Fasilitas','Facilities'],['Pompa kolam renang','Swimming pool pump'],'red',['SLA lewat · suku cadang','Past SLA · parts']]]],
+ [['Selesai','Done'],[['FP-1037',['Lift','Lift'],['Tombol lift B lt. 5','Lift B button, floor 5'],'green',['31 jam','31 h']],['FP-1029',['Kebersihan','Cleaning'],['Sampah di tangga darurat','Rubbish in fire stairs'],'green',['6 jam','6 h']]]]];
+ return `${head('',t('Work Order','Work orders'),t('Semua laporan penghuni dan pekerjaan rutin dalam satu papan, dengan penanggung jawab dan target waktu.','All resident requests and routine jobs on one board, each with an owner and a time target.'),`<button class="btn sm">${ic('plus')}${t('Buat work order','New work order')}</button>`)}
+ <div class="kan">${C.map(c=>`<div class="col"><h4>${T(c[0])}<span class="mute">${c[1].length}</span></h4>${c[1].map(k=>`<div class="tk"><div class="row between"><span class="xs mute" style="font-weight:700">${k[0]} · ${T(k[1])}</span></div><b>${T(k[2])}</b>${pill(k[3],T(k[4]))}</div>`).join('')}</div>`).join('')}</div>
+ <div class="grid g3" style="margin-top:16px">${[['timer',['Waktu respons rata-rata','Average response time'],t('3,4 jam','3.4 h')],['check-check',['Selesai sesuai SLA','Closed within SLA'],'87%'],['star',['Kepuasan penghuni','Resident satisfaction'],'4,3 / 5']].map(k=>`<div class="card kpi"><div class="l">${ic(k[0])}${T(k[1])}</div><div class="v">${k[2]}</div></div>`).join('')}</div>`;
+};
+
+V.board.comp=()=>`${head('',t('Kalender Kepatuhan','Compliance calendar'),t('Kewajiban hukum, inspeksi dan perawatan rutin — dengan pengingat 60, 30 dan 7 hari sebelumnya.','Legal duties, inspections and routine maintenance — with reminders 60, 30 and 7 days ahead.'))}
+<div class="card"><div class="tw"><table><tr><th>${t('Kewajiban','Obligation')}</th><th>${t('Frekuensi','Frequency')}</th><th>${t('Jatuh tempo','Due')}</th><th>${t('Penanggung jawab','Owner')}</th><th>${t('Status','Status')}</th></tr>
+${[
+ [['Uji riksa lift A & B (Disnaker)','Lift A & B statutory inspection'],['Tahunan','Annual'],'14 Des 2026',['Pengelola','Manager'],'red',['14 hari','14 days']],
+ [['Pengurasan & uji tangki air','Water tank cleaning & test'],['6 bulan','6-monthly'],'7 Des 2026',['Pengelola','Manager'],'amber',['Terjadwal','Scheduled']],
+ [['Perpanjangan asuransi gedung','Building insurance renewal'],['Tahunan','Annual'],'31 Des 2026',['Bendahara','Treasurer'],'amber',['Penawaran masuk','Quotes in']],
+ [['Uji sistem proteksi kebakaran','Fire protection system test'],['Tahunan','Annual'],'Mar 2027',['Pengelola','Manager'],'green',['Aman','OK']],
+ [['Uji laboratorium STP / air limbah','STP / wastewater lab test'],['Bulanan','Monthly'],'5 Des 2026',['Pengelola','Manager'],'green',['Aman','OK']],
+ [['Audit laporan keuangan 2026','2026 financial audit'],['Tahunan','Annual'],'Jan 2027',['Bendahara','Treasurer'],'blue',['KAP ditunjuk','Auditor appointed']],
+ [['Rapat Umum Tahunan','Annual General Meeting'],['Tahunan','Annual'],'27 Feb 2027',['Sekretaris','Secretary'],'blue',['Persiapan','Preparing']],
+ [['Laporan / pencatatan ke DPRKP','Reporting / registration with DPRKP'],['Sesuai ketentuan','As required'],'Mar 2027',['Sekretaris','Secretary'],'green',['Aman','OK']],
+ [['Sertifikat Laik Fungsi (SLF)','Certificate of fitness (SLF)'],['5 tahunan','5-yearly'],t('Dalam proses','In progress'),['Ketua','Chair'],'amber',['Konsultan','Consultant']],
+ [['Pembaruan SHGB (berakhir 2033)','SHGB renewal (expires 2033)'],['Sekali','One-off'],'2031–2033',['Ketua','Chair'],'grey',['Rencana jangka panjang','Long-term plan']]
+].map(r=>`<tr><td><b style="font-weight:600">${T(r[0])}</b></td><td class="sm">${T(r[1])}</td><td class="sm">${r[2]}</td><td class="sm">${T(r[3])}</td><td>${pill(r[4],T(r[5]))}</td></tr>`).join('')}</table></div></div>`;
+
+V.board.mtg=()=>{
+ const att=38,prox=15,need=57,tot=112,short=need-att-prox;
+ return `${head('',t('Rapat & Kuorum','Meetings & quorum'),t('Menyiapkan rapat yang sah: undangan tepat waktu dengan materi, daftar kuasa terverifikasi, kuorum terhitung langsung.','Preparing a valid meeting: timely notice with papers, verified proxy list, live quorum count.'))}
+ <div class="grid g3">
+ <div class="card span2"><h3>${ic('users-round')}${t('RUT 2027 — kuorum saat ini','2027 AGM — current quorum')}</h3>
+ <div class="row between sm" style="margin-bottom:8px"><span><b>${att+prox}</b> / ${tot} ${t('unit','units')} (${Math.round((att+prox)/tot*100)}%)</span><span class="mute">${t('Dibutuhkan >50%','Needed >50%')}: ${need}</span></div>
+ <div class="gauge"><i style="width:${att/tot*100}%;background:var(--teal)"></i><i style="left:${att/tot*100}%;width:${prox/tot*100}%;background:var(--sand)"></i><span class="line" style="left:${need/tot*100}%"></span></div>
+ <div class="legend" style="margin-top:10px"><span><i style="background:var(--teal)"></i>${t('Konfirmasi hadir','Confirmed attending')} ${att}</span><span><i style="background:var(--sand)"></i>${t('Kuasa terverifikasi','Verified proxies')} ${prox}</span></div>
+ <div class="note teal" style="margin-top:14px">${ic('info')}<div><b>${t('Kurang '+short+' unit untuk kuorum.','Quorum is '+short+' units short.')}</b> ${t('59 unit belum merespons — kirim pengingat otomatis?','59 units have not replied — send an automatic reminder?')}</div></div>
+ <button class="btn sm" style="margin-top:12px" onclick="toast(t('Pengingat dikirim ke 59 unit','Reminder sent to 59 units'))">${ic('send')}${t('Kirim pengingat','Send reminder')}</button></div>
+ <div class="card"><h3>${ic('list-checks')}${t('Daftar periksa rapat sah','Valid-meeting checklist')}</h3><div class="list sm">
+ ${[[1,['Panitia rapat dibentuk','Meeting committee formed']],[1,['Undangan + materi terkirim H-14','Notice + papers sent 14 days ahead']],[1,['Laporan audit dilampirkan','Audited accounts attached']],[0,['Daftar calon diumumkan','Candidate list published']],[0,['Notaris dikonfirmasi','Notary confirmed']],[0,['Daftar hadir & kuasa dikunci','Attendance & proxy list locked']]].map(c=>`<div style="align-items:center">${c[0]?`<span class="ico i-green" style="width:24px;height:24px">${ic('check')}</span>`:`<span class="ico" style="width:24px;height:24px;border:1.5px solid var(--line)"></span>`}<div class="grow" style="font-weight:600">${T(c[1])}</div></div>`).join('')}</div></div>
+ </div>
+ <div class="card" style="margin-top:16px"><h3>${ic('stamp')}${t('Log surat kuasa','Proxy log')}</h3><div class="tw"><table><tr><th>${t('Unit pemberi','Giving unit')}</th><th>${t('Penerima kuasa','Proxy holder')}</th><th>${t('Dokumen','Document')}</th><th>${t('Verifikasi','Verification')}</th></tr>
+ ${[['2C','Unit 2D',['Bermeterai','Duty-stamped'],'green',['Sah','Valid']],['6E','Unit 6A',['Bermeterai','Duty-stamped'],'green',['Sah','Valid']],['8A','Unit 4B',['Tanpa meterai','No duty stamp'],'red',['Ditolak — minta ulang','Rejected — re-request']],['10B','Unit 10D',['Bermeterai','Duty-stamped'],'amber',['Cek tanda tangan','Check signature']]].map(r=>`<tr><td><b>${r[0]}</b></td><td>${r[1]}</td><td class="sm">${T(r[2])}</td><td>${pill(r[3],T(r[4]))}</td></tr>`).join('')}</table></div>
+ <p class="xs mute" style="margin-top:8px">${t('Batas kuasa per penerima dan syarat sah mengikuti AD/ART dan peraturan; sistem menandai yang melanggar.','Proxy limits per holder and validity rules follow the AD/ART and regulations; the system flags breaches.')}</p></div>`;
+};
+
+V.board.fin=()=>`${head('',t('Keuangan','Finance'),t('Anggaran vs realisasi, dana cadangan terpisah, dan persetujuan pengeluaran berjenjang.','Budget vs actual, a separate sinking fund, and tiered spending approval.'))}
+<div class="grid g3">
+<div class="card span2"><h3>${ic('scale')}${t('Anggaran vs realisasi YTD (juta Rp)','Budget vs actual YTD (Rp million)')}</h3><div class="tw"><table><tr><th>${t('Pos','Line')}</th><th class="num">${t('Anggaran','Budget')}</th><th class="num">${t('Realisasi','Actual')}</th><th style="width:30%"></th></tr>
+${[[['Keamanan','Security'],1320,1287],[['Kebersihan','Cleaning'],780,802],[['Listrik area umum','Common-area electricity'],1150,1096],[['Gaji staf pengelola','Management staff'],1640,1640],[['Pemeliharaan & perbaikan','Maintenance & repairs'],960,671],[['Asuransi','Insurance'],210,198],[['Administrasi & audit','Admin & audit'],180,152]].map(r=>`<tr><td>${T(r[0])}</td><td class="num">${r[1].toLocaleString('id-ID')}</td><td class="num">${r[2].toLocaleString('id-ID')}</td><td><div class="bar"><i style="width:${Math.min(100,r[2]/r[1]*100)}%;${r[2]>r[1]?'background:var(--red)':''}"></i></div></td></tr>`).join('')}</table></div></div>
+<div class="card"><h3>${ic('git-pull-request-arrow')}${t('Persetujuan pengeluaran','Spending approval')}</h3><div class="list sm">
+${[['< Rp5 jt',['Manajer gedung','Building manager']],['Rp5–50 jt',['Bendahara + Ketua','Treasurer + Chair']],['> Rp50 jt',['Rapat pengurus + 3 penawaran','Board meeting + 3 quotes']],[t('Proyek besar','Major works'),['Rapat pemilik','Owners’ meeting']]].map(a=>`<div><div class="grow"><b>${a[0]}</b><span class="mute">${T(a[1])}</span></div></div>`).join('')}</div>
+<div class="note" style="margin-top:10px">${ic('clock')}<div><b>2</b> ${t('permintaan menunggu persetujuan Anda','requests awaiting your approval')}</div></div></div>
+</div>
+<div class="grid g2" style="margin-top:16px">
+<div class="card kpi"><div class="l">${ic('piggy-bank')}${t('Saldo dana cadangan (rekening terpisah)','Sinking fund balance (separate account)')}</div><div class="v">${rp(1840000000)}</div><div class="d mute">${t('Target rencana 10 tahun: Rp4,2 M pada 2031','10-year plan target: Rp4.2bn by 2031')}</div><div class="bar" style="margin-top:10px"><i style="width:44%;background:var(--sand)"></i></div></div>
+<div class="card kpi"><div class="l">${ic('landmark')}${t('Kas operasional','Operating cash')}</div><div class="v">${rp(612500000)}</div><div class="d mute">${t('Rekonsiliasi bank otomatis · terakhir 29 Nov','Automatic bank reconciliation · last 29 Nov')}</div></div>
+</div>`;
+
+V.board.proj=()=>`${head('',t('Proyek & Aset','Projects & assets'),t('Rencana perbaikan modal yang dibiayai dana cadangan, dan daftar aset dengan riwayat servis.','Capital works funded from the sinking fund, and an asset register with service history.'))}
+<div class="card"><h3>${ic('hammer')}${t('Rencana perbaikan modal','Capital works plan')}</h3><div class="tw"><table><tr><th>${t('Proyek','Project')}</th><th>${t('Prioritas','Priority')}</th><th class="num">${t('Estimasi','Estimate')}</th><th>${t('Tahap','Stage')}</th></tr>
+${[[['Perbaikan kolam renang','Swimming pool repair'],'red',['Tinggi','High'],420,['Pengerjaan','In progress']],[['Resurfacing jalan masuk & parkir','Driveway & car park resurfacing'],'red',['Tinggi','High'],680,['Tender','Tender']],[['Tambah pengisian EV','More EV charging'],'amber',['Sedang','Medium'],150,['Survei','Survey']],[['Lapangan tenis','Tennis court'],'amber',['Sedang','Medium'],210,['Menunggu anggaran','Awaiting budget']],[['Modernisasi lift','Lift modernisation'],'blue',['Rencana 2028','2028 plan'],2400,['Studi','Study']],[['Restorasi air mancur','Fountain restoration'],'grey',['Rendah','Low'],95,['Ide','Idea']]].map(p=>`<tr><td><b style="font-weight:600">${T(p[0])}</b></td><td>${pill(p[1],T(p[2]))}</td><td class="num">Rp${p[3]} ${t('jt','m')}</td><td class="sm">${T(p[4])}</td></tr>`).join('')}</table></div></div>
+<div class="card" style="margin-top:16px"><h3>${ic('boxes')}${t('Register aset','Asset register')}</h3><div class="tw"><table><tr><th>${t('Aset','Asset')}</th><th>${t('Servis terakhir','Last service')}</th><th>${t('Berikutnya','Next')}</th><th>${t('Kondisi','Condition')}</th></tr>
+${[[['Lift A','Lift A'],'14 Nov','14 Des','green',['Baik','Good']],[['Lift B','Lift B'],'18 Nov','2 Des','amber',['Perlu perhatian','Needs attention']],[['Genset 250 kVA','Generator 250 kVA'],'3 Nov','3 Des','green',['Baik','Good']],[['Pompa transfer air','Water transfer pumps'],'20 Okt','20 Jan','green',['Baik','Good']],[['Pompa & filter kolam','Pool pump & filter'],'2 Sep','—','red',['Rusak','Faulty']],[['STP','Sewage treatment plant'],'5 Nov','5 Des','green',['Baik','Good']]].map(a=>`<tr><td><b style="font-weight:600">${T(a[0])}</b></td><td class="sm">${a[1]}</td><td class="sm">${a[2]}</td><td>${pill(a[3],T(a[4]))}</td></tr>`).join('')}</table></div></div>`;
+
+V.board.vend=()=>`${head('',t('Kontrak & Vendor','Contracts & vendors'),t('Semua kontrak pihak ketiga, nilai dan masa berlakunya — dengan pengingat sebelum berakhir agar bisa ditender ulang.','Every third-party contract, its value and term — with reminders before expiry so it can be re-tendered.'))}
+<div class="card"><div class="tw"><table><tr><th>${t('Layanan','Service')}</th><th>${t('Vendor','Vendor')}</th><th class="num">${t('Nilai/tahun','Value/yr')}</th><th>${t('Berakhir','Expires')}</th><th>${t('Skor','Score')}</th><th></th></tr>
+${[[['Keamanan','Security'],'PT Jaga Contoh',1320,'Jun 2027','4,1'],[['Kebersihan','Cleaning'],'CV Bersih Contoh',780,'Feb 2027','3,4'],[['Perawatan lift','Lift maintenance'],'PT Lift Contoh',186,'Des 2026','3,9'],[['Pengendalian hama','Pest control'],'CV Hama Contoh',36,'Agu 2027','4,5'],[['Auditor (KAP)','Auditor'],'KAP Contoh & Rekan',95,t('Per tahun','Per year'),'—']].map(v=>`<tr><td><b style="font-weight:600">${T(v[0])}</b></td><td class="sm">${v[1]}</td><td class="num">Rp${v[2].toLocaleString('id-ID')} ${t('jt','m')}</td><td class="sm">${v[3]}</td><td>${v[4]}</td><td class="num">${v[3]==='Des 2026'||v[3]==='Feb 2027'?pill('amber',t('Tender ulang','Re-tender')):''}</td></tr>`).join('')}</table></div></div>
+<div class="card" style="margin-top:16px"><h3>${ic('gavel')}${t('Tender berjalan: resurfacing jalan masuk','Live tender: driveway resurfacing')}</h3><div class="tw"><table><tr><th>${t('Penawar','Bidder')}</th><th class="num">${t('Harga','Price')}</th><th>${t('Waktu','Duration')}</th><th>${t('Garansi','Warranty')}</th></tr>
+${[['Kontraktor A',652,t('6 minggu','6 weeks'),t('2 tahun','2 years')],['Kontraktor B',688,t('5 minggu','5 weeks'),t('3 tahun','3 years')],['Kontraktor C',731,t('8 minggu','8 weeks'),t('2 tahun','2 years')]].map(b=>`<tr><td>${b[0]}</td><td class="num">Rp${b[1]} ${t('jt','m')}</td><td>${b[2]}</td><td>${b[3]}</td></tr>`).join('')}</table></div></div>`;
+
+V.board.kpi=()=>`${head('',t('Kinerja Pengelola','Management company KPIs'),t('Pengelola dinilai dari data, bukan kesan. Skor ini dipublikasikan ke pemilik setiap triwulan.','The management company is judged on data, not impressions. The score is published to owners every quarter.'))}
+<div class="grid g3">
+<div class="card" style="text-align:center"><div class="sm mute" style="font-weight:700">${t('Skor November','November score')}</div><div style="font-size:64px;font-weight:800;color:var(--teal);line-height:1.1;margin:6px 0">82</div><div class="sm up">${t('▲ 8 dari Oktober','▲ 8 from October')}</div></div>
+<div class="card span2"><h3>${ic('gauge')}${t('Komponen skor','Score components')}</h3><div class="list">
+${[[['Respons laporan dalam SLA','Requests handled within SLA'],87,'teal'],[['Tingkat penagihan','Collection rate'],78,'teal'],[['Laporan bulanan tepat waktu','Monthly report on time'],100,'green'],[['Audit kebersihan (inspeksi acak)','Cleanliness audit (spot checks)'],68,'amber'],[['Kepatuhan inspeksi & servis','Inspections & servicing on time'],90,'teal'],[['Kepuasan penghuni','Resident satisfaction'],86,'teal']].map(k=>`<div style="display:block"><div class="row between sm"><b style="font-weight:600">${T(k[0])}</b><span>${k[1]}</span></div><div class="bar" style="margin-top:6px"><i style="width:${k[1]}%;background:var(--${k[2]})"></i></div></div>`).join('')}</div></div>
+</div>
+<div class="note teal" style="margin-top:16px">${ic('file-signature')}<div>${t('Target KPI ini dapat dimasukkan ke perjanjian pengelolaan: insentif bila tercapai, peringatan dan pengakhiran bila berulang kali tidak tercapai.','These KPI targets can be written into the management agreement: incentives when met, warnings and termination if repeatedly missed.')}</div></div>`;
+
+V.board.comms=()=>`${head('',t('Siaran','Broadcasts'),t('Tulis sekali, kirim dalam dua bahasa ke WhatsApp, email, portal dan papan pengumuman lobi.','Write once, send in both languages to WhatsApp, email, the portal and the lobby noticeboard.'))}
+<div class="grid g3">
+<div class="card span2"><h3>${ic('pen-line')}${t('Pesan baru','New message')}</h3>
+<div class="field"><label>${t('Penerima','Audience')}</label><select>${[['Semua pemilik (112)','All owners (112)'],['Semua penghuni termasuk penyewa','All residents incl. tenants'],['Lantai 5 saja','Floor 5 only'],['Unit dengan tunggakan','Units in arrears']].map(o=>`<option>${T(o)}</option>`).join('')}</select></div>
+<div class="grid g2" style="gap:12px"><div class="field"><label>🇮🇩 Bahasa Indonesia</label><textarea>Perawatan rutin lift B pada Rabu, 2 Des pukul 09.00–12.00. Mohon gunakan lift A. Terima kasih.</textarea></div><div class="field"><label>🇬🇧 English</label><textarea>Routine service on lift B on Wednesday 2 Dec, 09:00–12:00. Please use lift A. Thank you.</textarea></div></div>
+<div class="row wrap" style="gap:16px;margin-bottom:12px">${['WhatsApp','Email','Portal',t('Papan lobi (PDF)','Lobby board (PDF)')].map(c=>`<label class="row sm"><input type="checkbox" checked> ${c}</label>`).join('')}</div>
+<button class="btn" onclick="toast(t('Contoh: terkirim ke 112 unit','Example: sent to 112 units'))">${ic('send')}${t('Kirim','Send')}</button></div>
+<div class="card"><h3>${ic('mail-check')}${t('Terakhir dikirim','Recently sent')}</h3><div class="list">
+${[[['Laporan keuangan Q3 tersedia','Q3 financial report available'],'28 Nov','96%'],[['Pengurasan tangki air 7 Des','Water tank cleaning 7 Dec'],'25 Nov','91%'],[['Undangan sosialisasi portal','Portal launch invitation'],'20 Nov','88%']].map(m=>`<div><div class="grow"><b style="font-weight:600">${T(m[0])}</b><span class="xs mute">${m[1]} · ${t('dibaca','read')} ${m[2]}</span></div></div>`).join('')}</div></div>
+</div>`;
+
+V.board.log=()=>`${head('',t('Log Keputusan','Decision log'),t('Setiap keputusan pengurus tercatat dengan dasar, suara dan rujukan notulen — memori lembaga yang tidak hilang saat pengurus berganti.','Every board decision recorded with its basis, vote and minutes reference — institutional memory that survives a change of board.'))}
+<div class="card"><div class="tw"><table><tr><th>${t('Tanggal','Date')}</th><th>${t('Keputusan','Decision')}</th><th>${t('Suara','Vote')}</th><th>${t('Rujukan','Ref')}</th></tr>
+${[['26 Nov 2026',['Menunjuk KAP untuk audit 2026','Appoint auditor for 2026 audit'],'5–0','NR-2026-11'],['26 Nov 2026',['Meminta 3 penawaran resurfacing jalan masuk','Request 3 quotes for driveway resurfacing'],'5–0','NR-2026-11'],['12 Nov 2026',['Menetapkan alur pengingat tunggakan (usulan ke RUT)','Adopt arrears reminder sequence (proposal to AGM)'],'4–1','NR-2026-10'],['12 Nov 2026',['Meluncurkan portal Tahap 1','Launch portal Phase 1'],'5–0','NR-2026-10']].map(d=>`<tr><td class="sm">${d[0]}</td><td><b style="font-weight:600">${T(d[1])}</b></td><td>${d[2]}</td><td class="sm">${pill('grey',d[3])}</td></tr>`).join('')}</table></div></div>
+<div class="card" style="margin-top:16px"><h3>${ic('fingerprint')}${t('Jejak audit sistem','System audit trail')}</h3><div class="list sm">
+${[['09:14',['Bendahara menyetujui pembayaran vendor kebersihan Rp64,9 jt','Treasurer approved cleaning vendor payment Rp64.9m']],['08:52',['Pengelola menutup work order FP-1037','Manager closed work order FP-1037']],['Kemarin','Yesterday',['Sekretaris memverifikasi surat kuasa unit 6E','Secretary verified proxy for unit 6E']]].map(a=>{const time=a.length===3?t(a[0],a[1]):a[0];const txt=a.length===3?a[2]:a[1];return `<div><span class="mute" style="width:70px;flex-shrink:0">${time}</span><div class="grow">${T(txt)}</div></div>`}).join('')}</div></div>`;
+
+render();
+</script>
+
+</body>
+</html>
