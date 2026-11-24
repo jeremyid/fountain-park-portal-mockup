@@ -3,6 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2032%2032%22%3E%3Crect%20width%3D%2232%22%20height%3D%2232%22%20rx%3D%227%22%20fill%3D%22%230e625d%22/%3E%3Cpath%20d%3D%22M8%2024V10.5h2.6V7.2h2.6V3.8h5.6v3.4h2.6v3.3H24V24z%22%20fill%3D%22%23f2ead6%22/%3E%3Cg%20fill%3D%22%230e625d%22%3E%3Crect%20x%3D%2210.6%22%20y%3D%2211.6%22%20width%3D%221.3%22%20height%3D%2211.2%22%20rx%3D%22.4%22/%3E%3Crect%20x%3D%2213.2%22%20y%3D%228.4%22%20width%3D%221.3%22%20height%3D%2214.4%22%20rx%3D%22.4%22/%3E%3Crect%20x%3D%2217.5%22%20y%3D%228.4%22%20width%3D%221.3%22%20height%3D%2214.4%22%20rx%3D%22.4%22/%3E%3Crect%20x%3D%2220.1%22%20y%3D%2211.6%22%20width%3D%221.3%22%20height%3D%2211.2%22%20rx%3D%22.4%22/%3E%3C/g%3E%3Crect%20x%3D%2215.35%22%20y%3D%225%22%20width%3D%221.3%22%20height%3D%2217.8%22%20rx%3D%22.4%22%20fill%3D%22%237fd0c4%22/%3E%3Cpath%20d%3D%22M5%2027.4c1.8-1.6%203.7-1.6%205.5%200s3.7%201.6%205.5%200%203.7-1.6%205.5%200%203.7%201.6%205.5%200%22%20fill%3D%22none%22%20stroke%3D%22%237fd0c4%22%20stroke-width%3D%221.6%22%20stroke-linecap%3D%22round%22/%3E%3C/svg%3E">
 <meta name="robots" content="noindex,nofollow">
 <title>Fountain Park Portal</title>
 <meta name="claude:viewport-fit-sides" content="cover">
@@ -32,7 +33,8 @@ svg.lucide{width:18px;height:18px;stroke-width:2;flex-shrink:0}
 .top{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--topbg);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
 .topin{max-width:1320px;margin:0 auto;padding-block:12px;padding-left:max(20px,env(safe-area-inset-left,0px));padding-right:max(20px,env(safe-area-inset-right,0px));display:flex;align-items:center;gap:16px}
 .brand{display:flex;align-items:center;gap:10px;font-weight:800;letter-spacing:-.01em;white-space:nowrap}
-.logo{width:34px;height:34px;border-radius:8px;background:var(--teal);display:grid;place-items:center;color:#fff}
+.logo{width:34px;height:34px;flex-shrink:0;display:block}
+.logo svg{display:block;width:34px;height:34px}
 .brand small{display:block;font-weight:500;color:var(--mute);font-size:12px;letter-spacing:0}
 .roles{display:flex;gap:4px;background:var(--chip);padding:4px;border-radius:12px;margin-left:auto}
 .roles button{padding:7px 14px;border-radius:9px;font-weight:600;font-size:13.5px;color:var(--ink2);display:flex;gap:6px;align-items:center;white-space:nowrap}
@@ -256,7 +258,7 @@ function toast(m){const e=document.getElementById('toast');e.innerHTML=ic('check
 
 function header(){
  return `<div class="top"><div class="topin">
- <div class="brand"><div class="logo">${ic('droplets')}</div><div>Fountain Park<small>Griya Pancoran · PPPSRS</small></div></div>
+ <div class="brand"><div class="logo"><svg width="34" height="34" role="img" aria-label="Fountain Park" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><rect width="32" height="32" rx="7" fill="#0e625d"/><path d="M8 24V10.5h2.6V7.2h2.6V3.8h5.6v3.4h2.6v3.3H24V24z" fill="#f2ead6"/><g fill="#0e625d"><rect x="10.6" y="11.6" width="1.3" height="11.2" rx=".4"/><rect x="13.2" y="8.4" width="1.3" height="14.4" rx=".4"/><rect x="17.5" y="8.4" width="1.3" height="14.4" rx=".4"/><rect x="20.1" y="11.6" width="1.3" height="11.2" rx=".4"/></g><rect x="15.35" y="5" width="1.3" height="17.8" rx=".4" fill="#7fd0c4"/><path d="M5 27.4c1.8-1.6 3.7-1.6 5.5 0s3.7 1.6 5.5 0 3.7-1.6 5.5 0 3.7 1.6 5.5 0" fill="none" stroke="#7fd0c4" stroke-width="1.6" stroke-linecap="round"/></svg></div><div>Fountain Park<small>Griya Pancoran · PPPSRS</small></div></div>
  <div class="roles">${ROLES.map(r=>`<button class="${ROLE===r[0]?'on':''}" onclick="go('${r[0]}')">${ic(r[1])}${t(r[2],r[3])}</button>`).join('')}</div>
  <div class="lang"><button class="${LANG==='id'?'on':''}" onclick="setLang('id')">ID</button><button class="${LANG==='en'?'on':''}" onclick="setLang('en')">EN</button></div>
  </div><div class="mock"><b>${t('MOCK-UP','MOCK-UP')}</b>: ${t('semua nama, angka dan data di halaman ini adalah contoh, bukan data nyata Fountain Park.','all names, figures and data on these pages are samples, not real Fountain Park data.')}</div></div>`;
