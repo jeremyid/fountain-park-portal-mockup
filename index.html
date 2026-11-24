@@ -178,7 +178,7 @@ tr:last-child td{border-bottom:0}
 .t1{--tc:var(--sand)}
 .t2{--tc:var(--teal2)}
 .t3{--tc:var(--ink)}
-.phase{display:grid;grid-template-columns:120px 1fr;gap:16px;padding:16px 0;border-top:1px solid var(--line2)}
+.phase{display:grid;grid-template-columns:110px 1fr;gap:16px;padding:16px 0;border-top:1px solid var(--line2)}
 .phase:first-child{border-top:0}
 .phase .n{font-weight:800;color:var(--teal)}
 .chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:6px}
@@ -329,13 +329,12 @@ ${[
  ['message-circle','teal',['WhatsApp tetap dipakai','WhatsApp stays'],['Portal mengirim notifikasi ke WhatsApp; grup tidak perlu ditinggalkan.','The portal sends notifications to WhatsApp; nobody has to leave their groups.']]
 ].map(p=>`<div><div class="ico i-${p[1]}">${ic(p[0])}</div><div class="grow"><b>${T(p[2])}</b><span class="sm mute">${T(p[3])}</span></div></div>`).join('')}
 </div></div>
-<div><div class="eyebrow">${t('Peluncuran bertahap','Phased roll-out')}</div><h2 style="margin-bottom:14px">${t('Mulai kecil, tambah bertahap','Start small, add in stages')}</h2>
+<div><div class="eyebrow">${t('Peluncuran dua tahap','Two-phase roll-out')}</div><h2 style="margin-bottom:14px">${t('Selesai dalam 3 bulan','Live within 3 months')}</h2>
 <div class="card">
 ${[
- [['Tahap 1 · Bulan 1','Phase 1 · Month 1'],['Dasar','Foundations'],[['Halaman pengenalan gedung','Building intro page'],['Register pemilik','Owner register'],['Formulir laporan','Request form'],['Perpustakaan dokumen','Document library'],['Siaran WhatsApp','WhatsApp broadcasts']]],
- [['Tahap 2 · Bulan 2–3','Phase 2 · Months 2–3'],['Operasional','Operations'],[['Tagihan per unit (terpisah)','Itemised unit bills'],['Work order & SLA','Work orders & SLA'],['Kalender kepatuhan','Compliance calendar'],['Rapat & surat kuasa','Meetings & proxies']]],
- [['Tahap 3 · Bulan 4–6','Phase 3 · Months 4–6'],['Layanan penuh','Full service'],[['Bayar online QRIS/VA','QRIS/VA payments'],['Booking fasilitas','Facility booking'],['Izin tamu & renovasi','Guest & renovation permits'],['KPI pengelola','Manager KPIs'],['Polling pemilik','Owner polls']]]
-].map(p=>`<div class="phase"><div class="n">${T(p[0])}</div><div><b>${T(p[1])}</b><div class="chips">${p[2].map(c=>`<span>${T(c)}</span>`).join('')}</div></div></div>`).join('')}
+ [['Tahap 1 · Minggu 1–6','Phase 1 · Weeks 1–6'],['Dasar & operasional','Foundations & operations'],[['Halaman pengenalan gedung','Building intro page'],['Register pemilik','Owner register'],['Laporan, work order & SLA','Requests, work orders & SLA'],['Tagihan per unit (terpisah)','Itemised unit bills'],['Perpustakaan dokumen','Document library'],['Pengumuman & status fasilitas','Announcements & facility status'],['Kalender kepatuhan','Compliance calendar'],['Siaran WhatsApp','WhatsApp broadcasts']]],
+ [['Tahap 2 · Minggu 7–12','Phase 2 · Weeks 7–12'],['Layanan penuh','Full service'],[['Rapat & surat kuasa','Meetings & proxies'],['Bayar online QRIS/VA','QRIS/VA payments'],['Booking fasilitas','Facility booking'],['Izin tamu & renovasi','Guest & renovation permits'],['KPI pengelola','Manager KPIs'],['Polling pemilik','Owner polls']]]
+].map(p=>`<div class="phase"><div class="n">${T(p[0]).split(' · ')[0]}<div class="sm mute" style="font-weight:600">${T(p[0]).split(' · ')[1]}</div></div><div><b>${T(p[1])}</b><div class="chips">${p[2].map(c=>`<span>${T(c)}</span>`).join('')}</div></div></div>`).join('')}
 </div>
 <div class="note teal" style="margin-top:14px">${ic('info')}<div>${t('Biaya hosting sangat rendah. Biaya utama: penyiapan awal, biaya per transaksi pembayaran online, dan pesan WhatsApp Business. Rincian biaya disiapkan untuk disetujui dalam rapat.','Hosting costs are very low. The main costs are initial set-up, per-transaction fees for online payments, and WhatsApp Business messages. A costed budget would be prepared for approval at a meeting.')}</div></div>
 </div></div>
