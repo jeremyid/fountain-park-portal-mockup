@@ -336,13 +336,11 @@ ${[
  [['Tahap 2 · Minggu 7–12','Phase 2 · Weeks 7–12'],['Layanan penuh','Full service'],[['Rapat & surat kuasa','Meetings & proxies'],['Bayar online QRIS/VA','QRIS/VA payments'],['Booking fasilitas','Facility booking'],['Izin tamu & renovasi','Guest & renovation permits'],['KPI pengelola','Manager KPIs'],['Polling pemilik','Owner polls']]]
 ].map(p=>`<div class="phase"><div class="n">${T(p[0]).split(' · ')[0]}<div class="sm mute" style="font-weight:600">${T(p[0]).split(' · ')[1]}</div></div><div><b>${T(p[1])}</b><div class="chips">${p[2].map(c=>`<span>${T(c)}</span>`).join('')}</div></div></div>`).join('')}
 </div>
-<div class="note teal" style="margin-top:14px">${ic('info')}<div>${t('Biaya hosting sangat rendah. Biaya utama: penyiapan awal, biaya per transaksi pembayaran online, dan pesan WhatsApp Business. Rincian biaya disiapkan untuk disetujui dalam rapat.','Hosting costs are very low. The main costs are initial set-up, per-transaction fees for online payments, and WhatsApp Business messages. A costed budget would be prepared for approval at a meeting.')}</div></div>
 </div></div>
 
-<div class="card" style="margin-top:38px;display:grid;grid-template-columns:1fr auto;gap:18px;align-items:center">
-<div><h2>${t('Yang dibutuhkan dari pengurus','What the board needs to decide')}</h2>
-<p class="sub" style="margin:6px 0 0">${t('Siapa penanggung jawab portal (disarankan Sekretaris) · aturan penagihan & hak suara · aturan booking fasilitas · kewajiban pengelola mengisi data · membangun sendiri secara ringan atau memakai aplikasi pengelolaan apartemen yang sudah ada, keduanya bisa dibandingkan di Tahap 1.','Who owns the portal (suggest the Secretary) · collection & voting-eligibility rules · facility booking rules · the manager’s duty to keep data up to date · build lightly in-house or use an existing apartment-management app, both can be compared in Phase 1.')}</p></div>
-<button class="btn sand" onclick="go('resident')">${t('Coba mock-up','Try the mock-up')} ${ic('arrow-right')}</button></div>`;
+<div class="card" style="margin-top:38px;display:flex;flex-wrap:wrap;gap:16px;align-items:center;justify-content:space-between">
+<div><h2>${t('Coba sendiri','Try it yourself')}</h2><p class="sub" style="margin:4px 0 0">${t('Klik sisi penghuni dan pengurus untuk melihat cara kerjanya.','Click through the resident and board sides to see how it works.')}</p></div>
+<div class="row wrap"><button class="btn" onclick="go('resident')">${ic('house')}${t('Sisi penghuni','Resident side')}</button><button class="btn ghost" onclick="go('board')">${ic('shield-check')}${t('Sisi pengurus','Board side')}</button></div></div>`;
 
 /* ---------- PUBLIC ---------- */
 V.public.home=()=>`
