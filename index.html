@@ -289,11 +289,11 @@ V.proposal.overview=()=>`
 
 <div style="margin:34px 0 14px"><div class="eyebrow">${t('Tiga tingkat akses','Three levels of access')}</div><h2>${t('Siapa melihat apa','Who sees what')}</h2></div>
 <div class="grid g3">
- <div class="tier t1"><h3>${ic('globe')}${t('Publik','Public')}</h3><div class="who2">${t('Siapa saja — calon penyewa, pembeli, tamu','Anyone — prospective tenants, buyers, visitors')}</div><ul>
- ${[['Info gedung & kontak','Building info & contacts'],['Pengumuman umum','General announcements'],['Status fasilitas hari ini','Today’s facility status'],['Ringkasan transparansi & proyek','Transparency & project summary'],['Siapa pengurus & cara menghubungi','Who the board is & how to reach them']].map(x=>`<li>${ic('check')}${T(x)}</li>`).join('')}</ul>
+ <div class="tier t1"><h3>${ic('globe')}${t('Publik','Public')}</h3><div class="who2">${t('Siapa saja — calon penyewa dan pembeli','Anyone — prospective tenants and buyers')}</div><ul>
+ ${[['Pengenalan gedung','Introduction to the building'],['Lokasi & alamat','Location & address'],['Daftar fasilitas','List of facilities'],['Pertanyaan sewa / beli','Rental & purchase enquiries'],['Tombol masuk portal penghuni','Resident login']].map(x=>`<li>${ic('check')}${T(x)}</li>`).join('')}</ul>
  <button class="btn sm" style="margin-top:14px;background:rgba(255,255,255,.18)" onclick="go('public')">${t('Buka contoh','Open example')} ${ic('arrow-right')}</button></div>
  <div class="tier t2"><h3>${ic('house')}${t('Pemilik & Penghuni','Owners & residents')}</h3><div class="who2">${t('Login per unit — pemilik, penyewa terdaftar','Login per unit — owners, registered tenants')}</div><ul>
- ${[['Tagihan IPL, dana cadangan, listrik & air — terpisah','IPL, sinking fund, electricity & water — itemised'],['Bayar online (QRIS / VA) & unduh kuitansi','Pay online (QRIS / VA) & download receipts'],['Lapor masalah & lacak perbaikannya','Report problems & track repairs'],['Booking fasilitas, izin tamu & renovasi','Facility booking, guest & renovation permits'],['Dokumen: AD/ART, laporan audit, notulen','Documents: AD/ART, audits, minutes'],['Undangan rapat, surat kuasa, nominasi & polling','Meeting notices, proxies, nominations & polls']].map(x=>`<li>${ic('check')}${T(x)}</li>`).join('')}</ul>
+ ${[['Tagihan IPL, dana cadangan, listrik & air — terpisah','IPL, sinking fund, electricity & water — itemised'],['Bayar online (QRIS / VA) & unduh kuitansi','Pay online (QRIS / VA) & download receipts'],['Pengumuman, status fasilitas & kontak','Announcements, facility status & contacts'],['Lapor masalah & lacak perbaikannya','Report problems & track repairs'],['Booking fasilitas, izin tamu & renovasi','Facility booking, guest & renovation permits'],['Dokumen, transparansi & info pengurus','Documents, transparency & board info'],['Undangan rapat, surat kuasa, nominasi & polling','Meeting notices, proxies, nominations & polls']].map(x=>`<li>${ic('check')}${T(x)}</li>`).join('')}</ul>
  <button class="btn sm" style="margin-top:14px;background:rgba(255,255,255,.18)" onclick="go('resident')">${t('Buka contoh','Open example')} ${ic('arrow-right')}</button></div>
  <div class="tier t3"><h3>${ic('shield-check')}${t('Pengurus & Pengelola','Board & management')}</h3><div class="who2">${t('Privat, akses sesuai peran, semua tindakan tercatat','Private, role-based access, every action logged')}</div><ul>
  ${[['Register pemilik 112 unit','Owner register for all 112 units'],['Tunggakan & pengingat otomatis','Arrears & automatic reminders'],['Work order dengan target waktu (SLA)','Work orders with time targets (SLA)'],['Kalender kepatuhan & inspeksi','Compliance & inspection calendar'],['Rapat: undangan, kuorum, kuasa','Meetings: notices, quorum, proxies'],['Keuangan, dana cadangan, vendor, KPI pengelola','Finance, sinking fund, vendors, manager KPIs']].map(x=>`<li>${ic('check')}${T(x)}</li>`).join('')}</ul>
@@ -329,7 +329,7 @@ ${[
 <div><div class="eyebrow">${t('Peluncuran bertahap','Phased roll-out')}</div><h2 style="margin-bottom:14px">${t('Mulai kecil, tambah bertahap','Start small, add in stages')}</h2>
 <div class="card">
 ${[
- [['Tahap 1 · Bulan 1','Phase 1 · Month 1'],['Dasar','Foundations'],[['Halaman publik','Public page'],['Register pemilik','Owner register'],['Formulir laporan','Request form'],['Perpustakaan dokumen','Document library'],['Siaran WhatsApp','WhatsApp broadcasts']]],
+ [['Tahap 1 · Bulan 1','Phase 1 · Month 1'],['Dasar','Foundations'],[['Halaman pengenalan gedung','Building intro page'],['Register pemilik','Owner register'],['Formulir laporan','Request form'],['Perpustakaan dokumen','Document library'],['Siaran WhatsApp','WhatsApp broadcasts']]],
  [['Tahap 2 · Bulan 2–3','Phase 2 · Months 2–3'],['Operasional','Operations'],[['Tagihan per unit (terpisah)','Itemised unit bills'],['Work order & SLA','Work orders & SLA'],['Kalender kepatuhan','Compliance calendar'],['Rapat & surat kuasa','Meetings & proxies']]],
  [['Tahap 3 · Bulan 4–6','Phase 3 · Months 4–6'],['Layanan penuh','Full service'],[['Bayar online QRIS/VA','QRIS/VA payments'],['Booking fasilitas','Facility booking'],['Izin tamu & renovasi','Guest & renovation permits'],['KPI pengelola','Manager KPIs'],['Polling pemilik','Owner polls']]]
 ].map(p=>`<div class="phase"><div class="n">${T(p[0])}</div><div><b>${T(p[1])}</b><div class="chips">${p[2].map(c=>`<span>${T(c)}</span>`).join('')}</div></div></div>`).join('')}
@@ -345,34 +345,24 @@ ${[
 /* ---------- PUBLIC ---------- */
 V.public.home=()=>`
 <div class="hero"><div class="ripple"></div>
- <div class="eyebrow">Jl. KH Guru Amin, Pancoran · ${t('Jakarta Selatan','South Jakarta')}</div>
+ <div class="eyebrow">Jl. KH Guru Amin No. 2B · Pancoran · ${t('Jakarta Selatan','South Jakarta')}</div>
  <h1>Fountain Park · Griya Pancoran</h1>
- <p>${t('Portal resmi Perhimpunan Pemilik dan Penghuni Satuan Rumah Susun (PPPSRS). Informasi gedung, pengumuman, dan layanan untuk pemilik dan penghuni.','Official portal of the owners’ and residents’ association (PPPSRS). Building information, announcements and services for owners and residents.')}</p>
- <div class="row wrap"><button class="btn" onclick="go('resident')">${ic('log-in')}${t('Masuk portal penghuni','Resident login')}</button><button class="btn ghost" onclick="toast(t('Contoh: formulir kontak publik','Example: public contact form'))">${ic('mail')}${t('Hubungi pengelola','Contact management')}</button></div>
+ <p>${t('Apartemen hunian 112 unit di Pancoran, Jakarta Selatan, dengan kolam renang, lapangan tenis, gym dan keamanan 24 jam. Dikelola oleh Perhimpunan Pemilik dan Penghuni (PPPSRS).','A 112-unit residential apartment building in Pancoran, South Jakarta, with a swimming pool, tennis court, gym and 24-hour security. Run by its owners’ and residents’ association (PPPSRS).')}</p>
+ <div class="row wrap"><button class="btn" onclick="toast(t('Contoh: formulir pertanyaan sewa / beli dikirim ke kantor pengelola','Example: rental / purchase enquiry form sent to the management office'))">${ic('mail')}${t('Tanya unit tersedia','Ask about available units')}</button><button class="btn ghost" onclick="go('resident')">${ic('log-in')}${t('Masuk portal penghuni','Resident login')}</button></div>
 </div>
 <div class="grid g3" style="margin-top:20px">
- <div class="card span2"><h3>${ic('activity')}${t('Status fasilitas hari ini','Facility status today')}</h3>
- <div class="status">${[
-  ['Lift A','Lift A','green',['Normal','Normal']],['Lift B','Lift B','amber',['Perawatan 2 Des','Service 2 Dec']],['Air bersih','Water supply','green',['Normal','Normal']],
-  ['Kolam renang','Swimming pool','red',['Tutup — perbaikan','Closed — repairs']],['Lapangan tenis','Tennis court','amber',['Perbaikan dijadwalkan','Repair scheduled']],['Gym','Gym','green',['Buka 06–22','Open 06–22']],
-  ['Genset','Generator','green',['Siap','Ready']],['Parkir','Parking','green',['Normal','Normal']],['Pengisian EV','EV charging','green',['1 dari 2 tersedia','1 of 2 free']]
- ].map(s=>`<div><span class="dot" style="background:var(--${s[2]})"></span><div class="grow">${t(s[0],s[1])}<div class="xs mute" style="font-weight:500">${T(s[3])}</div></div></div>`).join('')}</div></div>
- <div class="card"><h3>${ic('phone')}${t('Kontak','Contacts')}</h3><div class="list">
- ${[['building-2','teal',['Kantor pengelola','Management office'],['Sen–Sab 08.00–17.00','Mon–Sat 08:00–17:00']],['shield','blue',['Keamanan 24 jam','Security 24 h'],['Pos lobi utama','Main lobby post']],['siren','red',['Darurat','Emergency'],['Kebakaran 113 · Ambulans 118/119','Fire 113 · Ambulance 118/119']]].map(c=>`<div><div class="ico i-${c[1]}">${ic(c[0])}</div><div class="grow"><b>${T(c[2])}</b><span class="sm mute">${T(c[3])}</span></div></div>`).join('')}</div></div>
+ ${[['building-2','teal',['Gedung','The building'],['112 unit hunian · dibangun 1993–1995 · beberapa tipe unit, termasuk penthouse','112 homes · built 1993–1995 · a range of unit types, including penthouses']],['map-pin','sand',['Lokasi','Location'],['Jl. KH Guru Amin No. 2B, Pancoran, Jakarta Selatan','Jl. KH Guru Amin No. 2B, Pancoran, South Jakarta']],['shield-check','blue',['Dikelola pemilik','Owner-run'],['Dikelola oleh PPPSRS yang dipilih para pemilik, dengan kantor pengelola di lokasi','Run by an owner-elected PPPSRS, with an on-site management office']]].map(c=>`<div class="card"><div class="ico i-${c[1]}" style="margin-bottom:12px">${ic(c[0])}</div><h3>${T(c[2])}</h3><p class="sm" style="color:var(--ink2)">${T(c[3])}</p></div>`).join('')}
 </div>
-<div class="grid g3" style="margin-top:16px">
- <div class="card span2"><h3>${ic('megaphone')}${t('Pengumuman','Announcements')}</h3><div class="list">
- ${[['wrench','amber','2 Des',['Perawatan rutin lift B, 09.00–12.00. Gunakan lift A.','Routine service on lift B, 09:00–12:00. Please use lift A.']],['droplets','blue','7 Des',['Pengurasan tangki air atas. Air mungkin keruh sebentar sore hari.','Rooftop water tank cleaning. Water may be cloudy briefly in the afternoon.']],['file-text','teal','28 Nov',['Laporan keuangan triwulan III 2026 sudah tersedia di portal penghuni.','Q3 2026 financial report is now available in the resident portal.']]].map(a=>`<div><div class="ico i-${a[1]}">${ic(a[0])}</div><div class="grow"><span class="xs mute" style="font-weight:700">${a[2]}</span><b style="font-weight:600">${T(a[3])}</b></div></div>`).join('')}</div></div>
- <div class="card"><h3>${ic('chart-pie')}${t('Transparansi singkat','Transparency at a glance')}</h3>
- <div class="list">
- <div><div class="grow"><span class="sm mute">${t('Penagihan IPL bulan lalu','IPL collected last month')}</span><b>78%</b><div class="bar" style="margin-top:6px"><i style="width:78%"></i></div></div></div>
- <div><div class="grow"><span class="sm mute">${t('Laporan rata-rata selesai','Average request closed in')}</span><b>${t('2,1 hari','2.1 days')}</b></div></div>
- <div><div class="grow"><span class="sm mute">${t('Proyek berjalan','Projects underway')}</span><b>${t('3 proyek','3 projects')}</b></div></div>
- </div><p class="xs mute" style="margin-top:8px">${t('Angka contoh.','Sample figures.')}</p></div>
+<div class="card" style="margin-top:16px"><h3>${ic('sparkles')}${t('Fasilitas','Facilities')}</h3>
+<div class="grid g4" style="gap:12px">${[['waves',['Kolam renang','Swimming pool']],['trophy',['Lapangan tenis','Tennis court']],['dumbbell',['Gym','Gym']],['shield',['Keamanan & CCTV 24 jam','24-hour security & CCTV']],['car',['Parkir penghuni','Resident parking']],['plug-zap',['Pengisian mobil listrik','EV charging']],['zap',['Genset cadangan','Backup generator']],['trees',['Taman & air mancur','Gardens & fountains']]].map(f=>`<div class="row" style="background:var(--soft);border-radius:12px;padding:12px"><div class="ico i-teal" style="width:32px;height:32px">${ic(f[0])}</div><b class="sm">${T(f[1])}</b></div>`).join('')}</div></div>
+<div class="grid g2" style="margin-top:16px">
+ <div class="card"><h3>${ic('key-round')}${t('Menyewa atau membeli','Renting or buying')}</h3><p class="sm" style="color:var(--ink2)">${t('Unit dijual atau disewakan langsung oleh pemiliknya. Kantor pengelola dapat meneruskan pertanyaan Anda ke pemilik unit yang tersedia.','Units are sold or let directly by their owners. The management office can pass your enquiry to owners with units available.')}</p>
+ <button class="btn sm" style="margin-top:12px" onclick="toast(t('Contoh: formulir pertanyaan','Example: enquiry form'))">${ic('send')}${t('Kirim pertanyaan','Send an enquiry')}</button></div>
+ <div class="card"><h3>${ic('phone')}${t('Kantor pengelola','Management office')}</h3><div class="list sm">
+ <div><div class="grow"><span class="mute">${t('Jam kantor','Office hours')}</span><b>${t('Senin–Sabtu, 08.00–17.00','Mon–Sat, 08:00–17:00')}</b></div></div>
+ <div><div class="grow"><span class="mute">${t('Alamat','Address')}</span><b>Jl. KH Guru Amin No. 2B, Pancoran, Jakarta Selatan</b></div></div></div></div>
 </div>
-<div class="card" style="margin-top:16px"><h3>${ic('users-round')}${t('Pengurus & Pengawas PPPSRS','PPPSRS board & supervisors')}</h3>
-<div class="grid g4">${[['Ketua','Chair'],['Sekretaris','Secretary'],['Bendahara','Treasurer'],['Ketua Pengawas','Chief supervisor']].map(r=>`<div class="row"><div class="av">${ic('user-round')}</div><div><b class="sm" style="display:block">${t('Nama terpilih','Elected name')}</b><span class="xs mute">${T(r)}</span></div></div>`).join('')}</div>
-<p class="xs mute" style="margin-top:12px">${t('Diisi setelah pemilihan pengurus. Masa jabatan, tanggal rapat pemilihan dan nomor pengesahan tercantum di sini.','Filled in after the board election. Term of office, election meeting date and registration number shown here.')}</p></div>`;
+<div class="note teal" style="margin-top:16px">${ic('lock')}<div>${t('Pengumuman, status fasilitas, tagihan, dokumen dan informasi pengurus hanya tersedia untuk pemilik dan penghuni terdaftar melalui portal penghuni.','Announcements, facility status, bills, documents and board information are only available to registered owners and residents through the resident portal.')}</div></div>`;
 
 /* ---------- RESIDENT ---------- */
 V.resident.home=()=>`
@@ -384,11 +374,20 @@ ${head(t('Selamat pagi','Good morning'),t('Halo, Ibu Sari','Hello, Ibu Sari'),t(
  <div class="row wrap" style="margin-top:12px"><button class="btn sm" onclick="go('resident','meet')">${t('Hadir / beri kuasa','Attend / give proxy')}</button><button class="btn ghost sm" onclick="go('resident','docs')">${ic('file-text')}${t('Materi rapat','Meeting papers')}</button></div></div>
 </div>
 <div class="qa" style="margin:16px 0">${[['qr-code','teal',['Bayar','Pay'],'bills'],['wrench','sand',['Lapor','Report'],'req'],['calendar-days','blue',['Booking','Book'],'book'],['ticket','green',['Izin tamu','Guest pass'],'access'],['folder-open','amber',['Dokumen','Documents'],'docs'],['vote','red',['Voting','Vote'],'meet']].map(q=>`<button onclick="go('resident','${q[3]}')"><div class="ico i-${q[1]}">${ic(q[0])}</div>${T(q[2])}</button>`).join('')}</div>
+<div class="card" style="margin-bottom:16px"><h3>${ic('activity')}${t('Status fasilitas hari ini','Facility status today')}</h3>
+ <div class="status">${[
+  ['Lift A','Lift A','green',['Normal','Normal']],['Lift B','Lift B','amber',['Perawatan 2 Des','Service 2 Dec']],['Air bersih','Water supply','green',['Normal','Normal']],
+  ['Kolam renang','Swimming pool','red',['Tutup — perbaikan','Closed — repairs']],['Lapangan tenis','Tennis court','amber',['Perbaikan dijadwalkan','Repair scheduled']],['Gym','Gym','green',['Buka 06–22','Open 06–22']],
+  ['Genset','Generator','green',['Siap','Ready']],['Parkir','Parking','green',['Normal','Normal']],['Pengisian EV','EV charging','green',['1 dari 2 tersedia','1 of 2 free']]
+ ].map(x=>`<div><span class="dot" style="background:var(--${x[2]})"></span><div class="grow">${t(x[0],x[1])}<div class="xs mute" style="font-weight:500">${T(x[3])}</div></div></div>`).join('')}</div></div>
 <div class="grid g2">
  <div class="card"><h3>${ic('wrench')}${t('Laporan saya','My requests')}</h3><div class="list">${tickets.slice(0,2).map(tk=>`<div><div class="grow"><div class="row between"><span class="xs mute" style="font-weight:700">${tk.id} · ${T(tk.cat)}</span>${tk.step===3?pill('green',t('Selesai','Done')):pill('blue',t('Dikerjakan','In progress'))}</div><b style="margin-top:3px">${T(tk.title)}</b><div class="steps">${[0,1,2,3].map(i=>`<span class="${i<=tk.step?'on':''}"></span>`).join('')}</div></div></div>`).join('')}</div></div>
  <div class="card"><h3>${ic('megaphone')}${t('Pengumuman','Announcements')}</h3><div class="list">
  ${[['amber','2 Des',['Perawatan lift B 09.00–12.00','Lift B service 09:00–12:00']],['blue','7 Des',['Pengurasan tangki air atas','Rooftop water tank cleaning']],['teal','28 Nov',['Laporan keuangan Q3 tersedia','Q3 financial report available']]].map(a=>`<div><span class="dot" style="background:var(--${a[0]});margin-top:7px"></span><div class="grow"><b style="font-weight:600">${T(a[2])}</b><span class="xs mute">${a[1]}</span></div></div>`).join('')}</div></div>
-</div>`;
+</div>
+<div class="card" style="margin-top:16px"><h3>${ic('phone')}${t('Kontak penting','Key contacts')}</h3><div class="grid g3" style="gap:12px">
+ ${[['building-2','teal',['Kantor pengelola','Management office'],['Sen–Sab 08.00–17.00 · ekst. 100','Mon–Sat 08:00–17:00 · ext. 100']],['shield','blue',['Keamanan 24 jam','Security 24 h'],['Pos lobi utama · ekst. 200','Main lobby post · ext. 200']],['siren','red',['Darurat','Emergency'],['Kebakaran 113 · Ambulans 118/119','Fire 113 · Ambulance 118/119']]].map(c=>`<div class="row" style="align-items:flex-start"><div class="ico i-${c[1]}">${ic(c[0])}</div><div class="grow"><b class="sm" style="display:block">${T(c[2])}</b><span class="xs mute">${T(c[3])}</span></div></div>`).join('')}
+</div></div>`;
 
 V.resident.bills=()=>{
  const items=[[['IPL (Rp16.500 × 98 m²)','Service charge (Rp16,500 × 98 m²)'],1617000],[['Dana cadangan (sinking fund)','Sinking fund'],161700],[['Listrik — 412 kWh','Electricity — 412 kWh'],473800],[['Air — 18 m³','Water — 18 m³'],59900],[['Denda keterlambatan','Late fee'],0]];
@@ -495,7 +494,10 @@ V.resident.trans=()=>{
  <div class="chart">${m.map((x,i)=>`<div><div class="dual"><i style="height:${inc[i]/8}%"></i><i class="b" style="height:${exp[i]/8}%"></i></div><span>${t(x,me[i])}</span></div>`).join('')}</div></div>
  <div class="card"><h3>${ic('hammer')}${t('Proyek perbaikan','Repair projects')}</h3><div class="list">
  ${[[['Perbaikan kolam renang','Swimming pool repair'],45,['Pengerjaan · selesai Mar 2027','In progress · done Mar 2027'],'blue'],[['Resurfacing jalan masuk','Driveway resurfacing'],15,['Tender · 3 penawaran masuk','Tender · 3 bids received'],'amber'],[['Tambah 4 titik pengisian EV','4 more EV chargers'],5,['Survei daya listrik','Power capacity survey'],'grey'],[['Lapangan tenis','Tennis court'],0,['Menunggu persetujuan anggaran','Awaiting budget approval'],'grey']].map(p=>`<div style="display:block"><div class="row between"><b style="font-weight:600">${T(p[0])}</b>${pill(p[3],p[1]+'%')}</div><div class="bar" style="margin:7px 0 4px"><i style="width:${p[1]}%"></i></div><span class="xs mute">${T(p[2])}</span></div>`).join('')}</div></div>
- </div>`;
+ </div>
+ <div class="card" style="margin-top:16px"><h3>${ic('users-round')}${t('Pengurus & Pengawas PPPSRS','PPPSRS board & supervisors')}</h3>
+ <div class="grid g4">${[['Ketua','Chair'],['Sekretaris','Secretary'],['Bendahara','Treasurer'],['Ketua Pengawas','Chief supervisor']].map(r=>`<div class="row"><div class="av">${ic('user-round')}</div><div><b class="sm" style="display:block">${t('Nama terpilih','Elected name')}</b><span class="xs mute">${T(r)}</span></div></div>`).join('')}</div>
+ <p class="xs mute" style="margin-top:12px">${t('Diisi setelah pemilihan pengurus: nama, unit, masa jabatan, tanggal rapat pemilihan dan nomor pencatatan.','Filled in after the board election: names, units, term of office, election meeting date and registration number.')}</p></div>`;
 };
 
 V.resident.prof=()=>`${head('',t('Profil & Unit','Profile & unit'),t('Data Anda dipakai hanya untuk pengelolaan gedung, sesuai UU Perlindungan Data Pribadi.','Your data is used only to run the building, in line with the Personal Data Protection Law.'))}
